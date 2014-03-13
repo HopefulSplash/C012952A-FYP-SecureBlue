@@ -817,9 +817,6 @@ public class MainWindowSample extends javax.swing.JFrame {
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
-        //  AboutSample accountSampleWindow = new AboutSample();
-        //       accountSampleWindow.setVisible(true);
-        //      accountSampleWindow.setLocationRelativeTo(this);
 
         JDialog Register = new AboutWindow(this, true);
         Register.setLocationRelativeTo(this);
