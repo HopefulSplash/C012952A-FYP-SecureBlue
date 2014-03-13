@@ -252,7 +252,8 @@ public class DeviceLoginSample extends javax.swing.JFrame {
         
         
         if (jComboBox1.getSelectedItem().toString().contentEquals("")){
-
+            MainWindowSample mWSameple = new MainWindowSample();
+            mWSameple.setVisible(true);
             this.dispose();
         }
         else {

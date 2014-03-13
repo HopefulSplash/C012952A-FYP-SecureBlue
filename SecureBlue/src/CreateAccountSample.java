@@ -55,11 +55,6 @@ public class CreateAccountSample extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setName("createAccountFrame"); // NOI18N
         setResizable(false);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
-            }
-        });
 
         accountDetailPanel.setBackground(new java.awt.Color(255, 255, 255));
         accountDetailPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Account Details"));
@@ -290,13 +285,6 @@ public class CreateAccountSample extends javax.swing.JFrame {
     private void emailAddressField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailAddressField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailAddressField1ActionPerformed
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        // TODO add your handling code here:
-       
-        AccountLoginSample aL = new AccountLoginSample();
-        aL.setVisible(true);
-    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
