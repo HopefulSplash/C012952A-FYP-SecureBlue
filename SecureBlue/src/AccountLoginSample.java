@@ -299,7 +299,8 @@ public class AccountLoginSample extends javax.swing.JFrame {
 
     private void createAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAccountButtonActionPerformed
         // TODO add your handling code here:
-       
+        CreateAccountSample cA = new CreateAccountSample();
+        cA.setVisible(true);
         this.dispose();
 
     }//GEN-LAST:event_createAccountButtonActionPerformed
