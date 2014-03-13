@@ -264,6 +264,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         popup.addSeparator();
         popup.add(item = new JMenuItem("Settings . . ."));
         item.addActionListener(menuListener);
+        jButton7.getAccessibleContext().setAccessibleName("Add");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -787,6 +788,31 @@ public class MainWindowSample extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable1FocusLost
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        popup.show(jButton7, 0, jButton7.getHeight());
+
+        popup.pack();
+
+
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            jTable1.setValueAt(true, i, 0);
+
+        }
+
+    }//GEN-LAST:event_jButton8ActionPerformed
+
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
         //  AboutSample accountSampleWindow = new AboutSample();
@@ -857,28 +883,6 @@ public class MainWindowSample extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton11ActionPerformed
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-
-        for (int i = 0; i < jTable1.getRowCount(); i++) {
-            jTable1.setValueAt(true, i, 0);
-
-        }
-    }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-        popup.show(jButton7, 0, jButton7.getHeight());
-
-        popup.pack();
-
-    }//GEN-LAST:event_jButton7ActionPerformed
 
     private void openWebpage(String url) {
         Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
