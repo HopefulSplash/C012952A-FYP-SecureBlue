@@ -5,10 +5,12 @@ import java.awt.Desktop;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import javax.swing.Box;
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
@@ -31,7 +33,6 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -47,9 +48,6 @@ public class MainWindowSample extends javax.swing.JFrame {
      * Creates new form MainWindowSample
      */
     public MainWindowSample() {
-
-        String path = "C:\\Test";
-
         initComponents();
 
         this.setLocationRelativeTo(null);
@@ -62,6 +60,56 @@ public class MainWindowSample extends javax.swing.JFrame {
         String ss = DateFormat.getDateTimeInstance().format(now);
         jLabel1.setText("System Date & Time: " + ss);
         jLabel3.setText("Session Time: 00:00:00");
+
+        getFiles("C:\\Users\\TheThoetha\\Desktop\\C012952A FYP SecureBlue\\Test");
+        File file;
+        Boolean select = false;
+        String name;
+        String date;
+        int pos;
+        String type;
+        String fileSize;
+        String status;
+
+        DefaultTableModel dw = (DefaultTableModel) jTable1.getModel();
+
+        for (int i = 0; i < filelists.size(); i++) {
+            file = filelists.get(i);
+
+            //file name
+            name = file.getName();
+
+            //date
+            date = DateFormat.getDateTimeInstance().format(file.lastModified());
+
+            //file extension
+            pos = name.lastIndexOf('.');
+            type = name.substring(pos);
+
+            // size
+            fileSize = getFileSize(file.length());
+
+            //status 
+            status = "Unprotected";
+
+            dw.addRow(new Object[]{false, name, date, type, fileSize, status, "Open", "Delete"});
+        }
+    }
+
+    public static String getFileSize(double fileLength) {
+        int unitSize = 1024;
+        if (fileLength < unitSize) {
+            return fileLength + " B";
+        }
+        int exp = (int) (Math.log(fileLength) / Math.log(unitSize));
+        char pre = "KMGTPE".charAt(exp - 1);
+
+        String s = String.format(" %sB", pre);
+        double we = fileLength / Math.pow(unitSize, exp);
+
+        String ss = we + s;
+
+        return ss;
     }
 
     /**
@@ -351,52 +399,14 @@ public class MainWindowSample extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, "Hello", null, null, "Open", "Delete"},
-                {null, "HELLO", null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, "asdasd", null, null, null, null, null, null},
-                {null, null, null, "ds", null, null, null, null},
-                {null, "asdsad", "sa", null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, "asdasd", null, null, null, null, null, null},
-                {null, null, "dsad", null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Select", "Name", "Date modified", "Type", "Size", "Status", " ", "  "
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
                 true, false, false, false, false, false, true, true
@@ -411,7 +421,7 @@ public class MainWindowSample extends javax.swing.JFrame {
             }
         });
         jTable1.getTableHeader().setReorderingAllowed(false);
-        jTable1.setRowHeight(20);
+        jTable1.setRowHeight(23);
         jTable1.getColumn(" ").setCellRenderer(new ButtonRenderer());
         jTable1.getColumn(" ").setCellEditor(
             new ButtonEditor(new JCheckBox()));
@@ -427,7 +437,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         jTable1.getColumnModel().getColumn(1).setMinWidth(250);
         jTable1.getColumnModel().getColumn(1).setMaxWidth(500);
         jTable1.getColumnModel().getColumn(2).setMinWidth(80);
-        jTable1.getColumnModel().getColumn(3).setMinWidth(100);
+        jTable1.getColumnModel().getColumn(3).setMinWidth(30);
 
         for (int a = 0; a < jTable1.getColumnCount(); a++){
             if (a != 1){
@@ -440,6 +450,11 @@ public class MainWindowSample extends javax.swing.JFrame {
             }
         });
         Saple.setViewportView(jTable1);
+        model = jTable1.getModel();
+        sorter = new TableRowSorter<>(model);
+        jTable1.setRowSorter(sorter);
+        sorter.setSortable(6, false);
+        sorter.setSortable(7, false);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -959,13 +974,8 @@ public class MainWindowSample extends javax.swing.JFrame {
 
     private void searchAll() {
 
-        TableModel model = jTable1.getModel();
-        final TableRowSorter<TableModel> sorter = new TableRowSorter<>(model);
-        jTable1.setRowSorter(sorter);
-
         String expr = jTextField1.getText();
         //stop feilds from filtering
-        sorter.setSortable(3, selected);
         // 
         sorter.setRowFilter(RowFilter.regexFilter(expr));
         sorter.setSortKeys(null);
@@ -984,6 +994,36 @@ public class MainWindowSample extends javax.swing.JFrame {
         }
     }
 
+    //directories to search
+    //file types to search for
+    //files that match the filter
+    static ArrayList<File> filelists = new ArrayList<>();
+
+    /**
+     *
+     * @param specifiedDirectory
+     * @param directoryName
+     * @return
+     */
+    public static void getFiles(String specifiedDirectory) {
+
+        String files;
+        File directory = new File(specifiedDirectory);
+        File[] allFileList = directory.listFiles();
+
+        for (File allFileList1 : allFileList) {
+
+            if (allFileList1.isFile()) {
+                files = allFileList1.getName();
+
+                filelists.add(allFileList1);
+                //scan it  
+            } else if (allFileList1.isDirectory()) {
+                getFiles(allFileList1.getAbsolutePath());
+            }
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -998,16 +1038,21 @@ public class MainWindowSample extends javax.swing.JFrame {
                 if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainWindowSample.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainWindowSample.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainWindowSample.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainWindowSample.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainWindowSample.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainWindowSample.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainWindowSample.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainWindowSample.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -1018,6 +1063,9 @@ public class MainWindowSample extends javax.swing.JFrame {
             }
         });
     }
+
+    private TableModel model;
+    TableRowSorter<TableModel> sorter;
     long start = System.currentTimeMillis();
     private boolean selected = false;
     private javax.swing.JPopupMenu popup;
@@ -1108,13 +1156,7 @@ public class MainWindowSample extends javax.swing.JFrame {
 
     class ImageRenderer extends DefaultTableCellRenderer {
 
-        //validation 
-        String fileType = "\ntest";
-
-        ImageIcon icon = new ImageIcon(getClass().getResource("ICON.png"));
-        Image img = icon.getImage();
-        Image newimg = img.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
-        ImageIcon newIcon = new ImageIcon(newimg);
+        ImageIcon icon;
 
         public ImageRenderer() {
             setOpaque(true);
@@ -1124,6 +1166,14 @@ public class MainWindowSample extends javax.swing.JFrame {
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
                 boolean hasFocus, int row, int column) {
 
+            String fileType = value.toString();
+
+            icon = switchIcon(fileType);
+
+            Image img = icon.getImage();
+            Image newimg = img.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
+            ImageIcon newIcon = new ImageIcon(newimg);
+
             if (isSelected) {
                 setForeground(table.getSelectionForeground());
                 setBackground(table.getSelectionBackground());
@@ -1132,14 +1182,62 @@ public class MainWindowSample extends javax.swing.JFrame {
                 setBackground(UIManager.getColor(Color.WHITE));
             }
 
-            setText(fileType);
             setIcon(newIcon);
             setHorizontalTextPosition(SwingConstants.CENTER);
-            setVerticalTextPosition(SwingConstants.BOTTOM);
+            setVerticalTextPosition(SwingConstants.CENTER);
             setHorizontalAlignment(SwingConstants.CENTER);
-            setVerticalAlignment(SwingConstants.TOP);
+            setVerticalAlignment(SwingConstants.CENTER);
 
             return this;
+        }
+
+        private ImageIcon switchIcon(String fileType) {
+            String iconPath = null;
+
+            switch (fileType) {
+                case ".txt":
+                    iconPath = "/graphic_Table/graphic_File/file_extension_txt.png";
+                    break;
+                case ".doc":
+                    iconPath = "/graphic_Table/graphic_File/file_extension_doc.png";
+                    break;
+                case ".pub":
+                    iconPath = "/graphic_Table/graphic_File/file_extension_pub.png";
+                    break;
+
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                case "Protected":
+                    iconPath = "/graphic_Table/graphic_Status/file_extension_pub.png";
+                    break;
+                case "Unprotected":
+                    iconPath = "/graphic_Table/graphic_Status/shield_green.png";
+                    break;
+                case "Not Support":
+                    iconPath = "/graphic_Table/graphic_Status/shield_grey.png";
+                    break;
+
+                default:
+                    iconPath = "/graphic_Table/graphic_File/file_extension_txt.png";
+                    break;
+            }
+
+            ImageIcon OUTPUT = new ImageIcon(getClass().getResource(iconPath));
+
+            return OUTPUT;
         }
 
     }
