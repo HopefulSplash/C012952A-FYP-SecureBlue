@@ -821,9 +821,9 @@ public class MainWindowSample extends javax.swing.JFrame {
         //       accountSampleWindow.setVisible(true);
         //      accountSampleWindow.setLocationRelativeTo(this);
 
-       // JDialog Register = new AboutWindow(this, true);
-      //  Register.setLocationRelativeTo(this);
-       // Register.setVisible(true);
+        JDialog Register = new AboutWindow(this, true);
+        Register.setLocationRelativeTo(this);
+        Register.setVisible(true);
 
 
     }//GEN-LAST:event_jMenuItem8ActionPerformed
