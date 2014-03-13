@@ -1,4 +1,4 @@
- 
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Image;
@@ -29,10 +29,10 @@ public class AccountLoginSample extends javax.swing.JFrame {
         //change location in final
         loginButton.requestFocus();
         this.setLocationRelativeTo(null);
-                    
-   ImageIcon ICON = new ImageIcon(AccountLoginSample.class.getResource("/ICON.png"));
-   
-   this.setIconImage(ICON.getImage());
+
+        ImageIcon ICON = new ImageIcon(AccountLoginSample.class.getResource("/ICON.png"));
+
+        this.setIconImage(ICON.getImage());
 
     }
 
@@ -264,30 +264,25 @@ public class AccountLoginSample extends javax.swing.JFrame {
         System.out.println("LOGIN");
 
         //check if it is in the database
-        
-        
-        if (usernameField.getText().contentEquals("Enter Username")){
-           
+        if (usernameField.getText().contentEquals("Enter Username")) {
+
             this.dispose();
-        }
-        else {
+        } else {
             //no password entered
-          //  if (){
-                
+            //  if (){
+
             //}
             //no username entered
-           // else if (){
-           //     
-           // }
-           // //wrong username / password entered
-           // else if (){
-                
+            // else if (){
+            //     
+            // }
+            // //wrong username / password entered
+            // else if (){
            // }
             //
-           // else{
-                
+            // else{
            // }           
-           // usernameField.requestFocus();
+            // usernameField.requestFocus();
         }
 
     }//GEN-LAST:event_loginButtonActionPerformed
@@ -324,16 +319,17 @@ public class AccountLoginSample extends javax.swing.JFrame {
 
     private void changeLoginLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changeLoginLabelMouseClicked
         // TODO add your handling code here:
-        
+
         this.dispose();
-        
+
         System.out.println("CHANGE");
 
     }//GEN-LAST:event_changeLoginLabelMouseClicked
 
     private void recoverAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recoverAccountButtonActionPerformed
         // TODO add your handling code here:
-       
+        RecoverAccountSample rA = new RecoverAccountSample();
+        rA.setVisible(true);
         this.dispose();
 
     }//GEN-LAST:event_recoverAccountButtonActionPerformed
