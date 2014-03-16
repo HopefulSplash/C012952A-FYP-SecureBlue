@@ -281,8 +281,8 @@ public class MainWindowSample extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -294,7 +294,7 @@ public class MainWindowSample extends javax.swing.JFrame {
                 .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(6, 6, 6))
         );
 
         popup = new JPopupMenu();
@@ -344,7 +344,7 @@ public class MainWindowSample extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1))
@@ -486,9 +486,11 @@ public class MainWindowSample extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -517,14 +519,13 @@ public class MainWindowSample extends javax.swing.JFrame {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -867,7 +868,17 @@ public class MainWindowSample extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        jTextField1.setText("");
 
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+
+            if (jTable1.getValueAt(i, 0).equals(true)) {
+                ((DefaultTableModel) jTable1.getModel()).removeRow(i);
+                filelists.remove(i);
+                i = -1;
+            }
+
+        }
 
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -1183,8 +1194,6 @@ public class MainWindowSample extends javax.swing.JFrame {
             }
 
             setIcon(newIcon);
-            setHorizontalTextPosition(SwingConstants.CENTER);
-            setVerticalTextPosition(SwingConstants.CENTER);
             setHorizontalAlignment(SwingConstants.CENTER);
             setVerticalAlignment(SwingConstants.CENTER);
 
@@ -1198,40 +1207,25 @@ public class MainWindowSample extends javax.swing.JFrame {
                 case ".txt":
                     iconPath = "/graphic_Table/graphic_File/file_extension_txt.png";
                     break;
-                case ".doc":
+                case ".docx":
                     iconPath = "/graphic_Table/graphic_File/file_extension_doc.png";
                     break;
                 case ".pub":
                     iconPath = "/graphic_Table/graphic_File/file_extension_pub.png";
                     break;
 
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                 case "Protected":
                     iconPath = "/graphic_Table/graphic_Status/file_extension_pub.png";
                     break;
                 case "Unprotected":
-                    iconPath = "/graphic_Table/graphic_Status/shield_green.png";
+                    iconPath = "/graphic_Table/graphic_Status/lock_open.png";
                     break;
                 case "Not Support":
                     iconPath = "/graphic_Table/graphic_Status/shield_grey.png";
                     break;
 
                 default:
-                    iconPath = "/graphic_Table/graphic_File/file_extension_txt.png";
+                    iconPath = "/graphic_Table/graphic_File/file_extension_plan.png";
                     break;
             }
 
@@ -1304,10 +1298,51 @@ public class MainWindowSample extends javax.swing.JFrame {
                 // 
                 // 
                 if (button.getText().equalsIgnoreCase("Delete")) {
-                    JOptionPane.showMessageDialog(button.getRootPane().getRootPane(), "Delete" + ": Ouch!");
+
+                    if (filelists.get(jTable1.getSelectedRow()).delete()) {
+
+                        ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_Message/page_go.png"));
+
+                        String filePath = filelists.get(jTable1.getSelectedRow()).getAbsolutePath();
+
+                        JOptionPane.showMessageDialog(button.getRootPane().getRootPane(),
+                                "File Located: " + filePath + " Has Been Deleted",
+                                "File Delete Successful",
+                                JOptionPane.INFORMATION_MESSAGE,
+                                icon);
+                        // remove from list/table/delete
+                    } else {
+                        ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_Error/page_error.png"));
+
+                        String filePath = filelists.get(jTable1.getSelectedRow()).getAbsolutePath();
+
+                        JOptionPane.showMessageDialog(button.getRootPane().getRootPane(),
+                                "File Located: " + filePath + " Cannot Be Deleted",
+                                "File Canot Be Deleted",
+                                JOptionPane.INFORMATION_MESSAGE,
+                                icon);
+                    }
 
                 } else if (button.getText().equalsIgnoreCase("Open")) {
-                    JOptionPane.showMessageDialog(button.getRootPane().getRootPane(), "Oprn" + ": Ouch!");
+
+                    try {
+                        // error handling
+                        
+                        
+                        if (Desktop.isDesktopSupported()) {
+                            Desktop.getDesktop().open(filelists.get(jTable1.getSelectedRow()));
+                        }
+                    } catch (IOException ioe ) {
+                        ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_Error/page_error.png"));
+
+                        String filePath = filelists.get(jTable1.getSelectedRow()).getAbsolutePath();
+
+                        JOptionPane.showMessageDialog(button.getRootPane().getRootPane(),
+                                "File Located: " + filePath + " Cannot Be Opened",
+                                "File Canot Be Opened",
+                                JOptionPane.INFORMATION_MESSAGE,
+                                icon);
+                    }
 
                 }
                 // System.out.println(label + ": Ouch!");
