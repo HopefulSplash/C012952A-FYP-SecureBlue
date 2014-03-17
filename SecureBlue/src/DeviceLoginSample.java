@@ -1,11 +1,15 @@
- 
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
 /*
@@ -25,14 +29,15 @@ public class DeviceLoginSample extends javax.swing.JFrame {
     public DeviceLoginSample() {
 
         initComponents();
-
+        scanDevies();
         //change location in final
         loginButton.requestFocus();
+        jComboBox1.setFocusable(false);
         this.setLocationRelativeTo(null);
-                    
-   ImageIcon ICON = new ImageIcon(AccountLoginSample.class.getResource("/ICON.png"));
-   
-   this.setIconImage(ICON.getImage());
+      System.out.println(this.getSize());
+        ImageIcon ICON = new ImageIcon(AccountLoginSample.class.getResource("/ICON.png"));
+
+        this.setIconImage(ICON.getImage());
 
     }
 
@@ -59,10 +64,18 @@ public class DeviceLoginSample extends javax.swing.JFrame {
         logoImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("SecureBlue | Account Login");
+        setTitle("SecureBlue | Device Login");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(new java.awt.Dimension(346, 337));
+        setMinimumSize(new java.awt.Dimension(346, 337));
         setName("accountLoginFrame"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(346, 337));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         loginDetailsPanel.setBackground(new java.awt.Color(255, 255, 255));
         loginDetailsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Login Details"));
@@ -104,6 +117,16 @@ public class DeviceLoginSample extends javax.swing.JFrame {
             }
         });
 
+        jComboBox1.setMaximumRowCount(20);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Scanning...", "Refresh Scan" }));
+        jComboBox1.setLightWeightPopupEnabled(false);
+        jComboBox1.setName(""); // NOI18N
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout loginDetailsPanelLayout = new javax.swing.GroupLayout(loginDetailsPanel);
         loginDetailsPanel.setLayout(loginDetailsPanelLayout);
         loginDetailsPanelLayout.setHorizontalGroup(
@@ -130,15 +153,15 @@ public class DeviceLoginSample extends javax.swing.JFrame {
                 .addGroup(loginDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usernameLabel)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                .addGap(10, 10, 10)
                 .addGroup(loginDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordLabel)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                .addGap(10, 10, 10)
                 .addComponent(loginButton)
-                .addGap(15, 15, 15)
+                .addGap(10, 10, 10)
                 .addComponent(changeLoginLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(15, 15, 15))
+                .addGap(10, 10, 10))
         );
 
         accountCreationRecoveryPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -167,18 +190,18 @@ public class DeviceLoginSample extends javax.swing.JFrame {
             .addGroup(accountCreationRecoveryPanelLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(createAccountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(6, 6, 6)
                 .addComponent(recoverAccountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         accountCreationRecoveryPanelLayout.setVerticalGroup(
             accountCreationRecoveryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(accountCreationRecoveryPanelLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(6, 6, 6)
                 .addGroup(accountCreationRecoveryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createAccountButton)
                     .addComponent(recoverAccountButton))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGap(6, 6, 6))
         );
 
         logoPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -209,21 +232,21 @@ public class DeviceLoginSample extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(loginDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(accountCreationRecoveryPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(logoPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(loginDetailsPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(10, 10, 10))
+                    .addComponent(logoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(6, 6, 6))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(6, 6, 6)
                 .addComponent(logoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addGap(6, 6, 6)
                 .addComponent(loginDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
+                .addGap(6, 6, 6)
                 .addComponent(accountCreationRecoveryPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -249,32 +272,24 @@ public class DeviceLoginSample extends javax.swing.JFrame {
         System.out.println("LOGIN");
 
         //check if it is in the database
-        
-        
-        if (jComboBox1.getSelectedItem().toString().contentEquals("")){
-            MainWindowSample mWSameple = new MainWindowSample();
-            mWSameple.setVisible(true);
-            this.dispose();
-        }
-        else {
+        MainWindowSample mWSameple = new MainWindowSample();
+        mWSameple.setVisible(true);
+        this.dispose();
+
             //no password entered
-          //  if (){
-                
-            //}
-            //no username entered
-           // else if (){
-           //     
-           // }
-           // //wrong username / password entered
-           // else if (){
-                
-           // }
-            //
-           // else{
-                
-           // }           
-           // usernameField.requestFocus();
-        }
+        //  if (){
+        //}
+        //no username entered
+        // else if (){
+        //     
+        // }
+        // //wrong username / password entered
+        // else if (){
+        // }
+        //
+        // else{
+        // }           
+        // usernameField.requestFocus();
 
     }//GEN-LAST:event_loginButtonActionPerformed
 
@@ -299,7 +314,7 @@ public class DeviceLoginSample extends javax.swing.JFrame {
         AccountLoginSample dLSameple = new AccountLoginSample();
         dLSameple.setVisible(true);
         this.dispose();
-        
+
         System.out.println("CHANGE");
 
     }//GEN-LAST:event_changeLoginLabelMouseClicked
@@ -311,6 +326,29 @@ public class DeviceLoginSample extends javax.swing.JFrame {
         this.dispose();
 
     }//GEN-LAST:event_recoverAccountButtonActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        JComboBox combo = (JComboBox) evt.getSource();
+        if (combo.getSelectedItem().equals("Refresh Scan")) {
+            jComboBox1.removeAllItems();
+            jComboBox1.insertItemAt("Scanning...", 0);
+            jComboBox1.insertItemAt("Refresh Scan", 1);
+            scanDevies();
+            jComboBox1.setSelectedIndex(0);
+   
+            
+
+        } else {
+
+        }
+
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -363,5 +401,19 @@ public class DeviceLoginSample extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     int usernameFocusCount = 0;
     int passwordFocusCount = 0;
+
+    BluetoothThread bluetooth = new BluetoothThread();
+    Thread BluetoothThread1;
+
+    private void scanDevies() {
+
+        jComboBox1.setEnabled(false);
+
+        bluetooth.setJ1(jComboBox1);
+
+        BluetoothThread1 = new Thread(bluetooth);
+        BluetoothThread1.start();
+
+    }
 
 }

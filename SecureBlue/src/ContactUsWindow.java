@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
  */
 public class ContactUsWindow extends javax.swing.JDialog {
 
-    EmailThread emailContact;
+    EmailThread emailContact = new EmailThread();
 
     public JButton getjButton1() {
         return jButton1;
@@ -179,7 +179,7 @@ public class ContactUsWindow extends javax.swing.JDialog {
             emailThread = new Thread(emailContact);
             emailThread.start();
 
-
+            
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

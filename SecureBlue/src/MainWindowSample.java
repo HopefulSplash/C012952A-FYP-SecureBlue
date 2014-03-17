@@ -3,14 +3,19 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Desktop;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Box;
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
@@ -438,6 +443,18 @@ public class MainWindowSample extends javax.swing.JFrame {
         jTable1.getColumnModel().getColumn(1).setMaxWidth(500);
         jTable1.getColumnModel().getColumn(2).setMinWidth(80);
         jTable1.getColumnModel().getColumn(3).setMinWidth(30);
+
+        jTable1.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent me) {
+                JTable table =(JTable) me.getSource();
+                Point p = me.getPoint();
+                int row = table.rowAtPoint(p);
+                if (me.getClickCount() == 2) {
+                    // your valueChanged overridden method
+                    openFile(filelists.get(jTable1.getSelectedRow()));
+                }
+            }
+        });
 
         for (int a = 0; a < jTable1.getColumnCount(); a++){
             if (a != 1){
@@ -1034,6 +1051,24 @@ public class MainWindowSample extends javax.swing.JFrame {
             }
         }
     }
+    
+        void openFile(File file1) {
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().open(file1);
+            }
+        } catch (IOException ioe) {
+            ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_Error/page_error.png"));
+
+            String filePath = filelists.get(jTable1.getSelectedRow()).getAbsolutePath();
+
+            JOptionPane.showMessageDialog(jTable1.getRootPane(),
+                    "File Located: " + filePath + " Cannot Be Opened",
+                    "File Canot Be Opened",
+                    JOptionPane.INFORMATION_MESSAGE,
+                    icon);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -1327,12 +1362,11 @@ public class MainWindowSample extends javax.swing.JFrame {
 
                     try {
                         // error handling
-                        
-                        
+
                         if (Desktop.isDesktopSupported()) {
                             Desktop.getDesktop().open(filelists.get(jTable1.getSelectedRow()));
                         }
-                    } catch (IOException ioe ) {
+                    } catch (IOException ioe) {
                         ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_Error/page_error.png"));
 
                         String filePath = filelists.get(jTable1.getSelectedRow()).getAbsolutePath();
@@ -1360,5 +1394,6 @@ public class MainWindowSample extends javax.swing.JFrame {
             super.fireEditingStopped();
         }
     }
+
 
 }

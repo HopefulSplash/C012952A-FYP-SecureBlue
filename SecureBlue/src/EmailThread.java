@@ -179,6 +179,8 @@ public class EmailThread implements Runnable {
                     "SecureBlue | Message Error",
                     JOptionPane.INFORMATION_MESSAGE,
                     icon);
+            
+            
 
         }
 
