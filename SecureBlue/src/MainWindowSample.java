@@ -2,6 +2,7 @@
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Desktop;
+import java.awt.Desktop.Action;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -14,18 +15,16 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.Box;
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
-import javax.swing.JMenuItem;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
 import javax.swing.JTable;
+import javax.swing.JTree;
 import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
@@ -57,8 +56,6 @@ public class MainWindowSample extends javax.swing.JFrame {
 
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.WHITE);
-        jScrollPane5.getViewport().setBackground(Color.WHITE);
-        jScrollPane5.setBackground(Color.WHITE);
         jTable1.setBackground(Color.WHITE);
         jTable1.setFillsViewportHeight(true);
         java.util.Date now = new java.util.Date();
@@ -66,7 +63,8 @@ public class MainWindowSample extends javax.swing.JFrame {
         jLabel1.setText("System Date & Time: " + ss);
         jLabel3.setText("Session Time: 00:00:00");
 
-        getFiles("C:\\Users\\TheThoetha\\Desktop\\C012952A FYP SecureBlue\\Test");
+        File f1 = new File("C:\\Users\\TheThoetha\\Desktop\\C012952A FYP SecureBlue\\Test");
+        getFiles(f1);
         File file;
         Boolean select = false;
         String name;
@@ -140,8 +138,14 @@ public class MainWindowSample extends javax.swing.JFrame {
         Saple = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTree3 = new javax.swing.JTree();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -160,13 +164,6 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenuItem21 = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
         jMenuItem22 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem14 = new javax.swing.JMenuItem();
-        jSeparator9 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem31 = new javax.swing.JMenuItem();
-        jMenuItem32 = new javax.swing.JMenuItem();
-        jSeparator18 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem33 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem30 = new javax.swing.JMenuItem();
         jSeparator14 = new javax.swing.JPopupMenu.Separator();
@@ -302,30 +299,7 @@ public class MainWindowSample extends javax.swing.JFrame {
                 .addGap(6, 6, 6))
         );
 
-        popup = new JPopupMenu();
-        ActionListener menuListener = new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-                System.out.println("Popup menu item ["
-                    + event.getActionCommand() + "] was pressed.");
-            }
-        };
-        JMenuItem item;
-        popup.add(item = new JMenuItem("Left", new ImageIcon("Logo.png")));
-        item.setHorizontalTextPosition(JMenuItem.RIGHT);
-        item.addActionListener(menuListener);
-        popup.add(item = new JMenuItem("Center", new ImageIcon("ICON.png")));
-        item.setHorizontalTextPosition(JMenuItem.RIGHT);
-        item.addActionListener(menuListener);
-        popup.add(item = new JMenuItem("Right", new ImageIcon("Logo.png")));
-        item.setHorizontalTextPosition(JMenuItem.RIGHT);
-        item.addActionListener(menuListener);
-        popup.add(item = new JMenuItem("Full", new ImageIcon("4.gif")));
-        item.setHorizontalTextPosition(JMenuItem.RIGHT);
-        item.addActionListener(menuListener);
-        popup.addSeparator();
-        popup.add(item = new JMenuItem("Settings . . ."));
-        item.addActionListener(menuListener);
-        jButton7.getAccessibleContext().setAccessibleName("Add");
+        jButton7.getAccessibleContext().setAccessibleName("");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(691, 21));
@@ -476,35 +450,67 @@ public class MainWindowSample extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Account Work Stations");
-        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Home");
-        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Desktop 1");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Laptop");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Work");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Dekstop 1");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        jTree3.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jScrollPane5.setViewportView(jTree3);
+        jLabel5.setText("Encrypted Files:");
+
+        jLabel6.setText("Decrypted Files:");
+
+        jLabel7.setText("Unsupported Files:");
+
+        jLabel8.setText("Total Files:");
+
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel9.setText("0");
+
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel10.setText("0");
+
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel11.setText("0");
+
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel12.setText("0");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel12))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -538,12 +544,12 @@ public class MainWindowSample extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 788, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(10, 10, 10)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -630,29 +636,6 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenu6.add(jMenuItem22);
 
         jMenuBar1.add(jMenu6);
-
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Workstation/computer.png"))); // NOI18N
-        jMenu3.setText("Workstation");
-
-        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Workstation/server_connect.png"))); // NOI18N
-        jMenuItem14.setText("No Workstation Connected");
-        jMenu3.add(jMenuItem14);
-        jMenu3.add(jSeparator9);
-
-        jMenuItem31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Workstation/computer_go.png"))); // NOI18N
-        jMenuItem31.setText("Load WorkStation");
-        jMenu3.add(jMenuItem31);
-
-        jMenuItem32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Workstation/computer_delete.png"))); // NOI18N
-        jMenuItem32.setText("Unload Workstation");
-        jMenu3.add(jMenuItem32);
-        jMenu3.add(jSeparator18);
-
-        jMenuItem33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Workstation/computer.png"))); // NOI18N
-        jMenuItem33.setText("Manage Workstations");
-        jMenu3.add(jMenuItem33);
-
-        jMenuBar1.add(jMenu3);
 
         jMenu8.setText("Extras");
 
@@ -841,7 +824,9 @@ public class MainWindowSample extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Saple)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1300, Short.MAX_VALUE)
             .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
         );
@@ -857,7 +842,7 @@ public class MainWindowSample extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Saple)))
+                        .addComponent(Saple, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)))
                 .addGap(6, 6, 6)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -876,27 +861,154 @@ public class MainWindowSample extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        popup.show(jButton7, 0, jButton7.getHeight());
 
-        popup.pack();
+        File[] files;
 
+        Object[] options = {"File",
+            "Folder",
+            "Drive",
+            "External Device",
+            "Cancel"};
+        int n = JOptionPane.showOptionDialog(this,
+                "Would you like some green eggs to go "
+                + "with that ham?",
+                "A Silly Question",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[4]);
+
+        if (n == 0) {
+            JFileChooser chooser = new JFileChooser();
+            chooser.setCurrentDirectory(new File(System.getProperty("user.home") + File.separator + System.getProperty("user.name") + File.separator + "Documents"));
+
+            javax.swing.Action details = chooser.getActionMap().get("viewTypeDetails");
+            details.actionPerformed(null);
+            chooser.setMultiSelectionEnabled(true);
+            chooser.setDragEnabled(true);
+            chooser.setDialogTitle("Select A File");
+            chooser.setApproveButtonText("Add");
+            chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+
+            int returnVal = chooser.showOpenDialog(this);
+
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+                files = chooser.getSelectedFiles();
+
+            }
+
+        } else if (n == 1) {
+            JFileChooser chooser1 = new JFileChooser();
+            javax.swing.Action details = chooser1.getActionMap().get("viewTypeDetails");
+            details.actionPerformed(null);
+            chooser1.setCurrentDirectory(new File(System.getProperty("user.home") + File.separator + System.getProperty("user.name") + File.separator + "Documents"));
+            chooser1.setMultiSelectionEnabled(true);
+
+            chooser1.setDialogTitle("Select A Folder");
+            chooser1.setApproveButtonText("Add");
+            chooser1.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+            int returnVal = chooser1.showOpenDialog(this);
+
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+                files = chooser1.getSelectedFiles();
+
+            }
+        } else if (n == 2) {
+            JFileChooser chooser2 = new JFileChooser();
+            javax.swing.Action details = chooser2.getActionMap().get("viewTypeDetails");
+            details.actionPerformed(null);
+            chooser2.setMultiSelectionEnabled(true);
+
+            chooser2.setCurrentDirectory(chooser2.getFileSystemView().getParentDirectory(new File(System.getProperty("user.home")).getParentFile().getParentFile()));
+            chooser2.setDialogTitle("Select A Drive");
+            chooser2.setApproveButtonText("Add");
+            chooser2.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+            int returnVal = chooser2.showOpenDialog(this);
+
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+                files = chooser2.getSelectedFiles();
+
+            }
+        } else if (n == 3) {
+            JFileChooser chooser3 = new JFileChooser();
+            javax.swing.Action details = chooser3.getActionMap().get("viewTypeDetails");
+            details.actionPerformed(null);
+            chooser3.setMultiSelectionEnabled(true);
+
+            chooser3.setCurrentDirectory(chooser3.getFileSystemView().getParentDirectory(new File(System.getProperty("user.home")).getParentFile().getParentFile()));
+            chooser3.setDialogTitle("Select A External Device");
+            chooser3.setApproveButtonText("Add");
+            chooser3.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+            int returnVal = chooser3.showOpenDialog(this);
+
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+
+                files = chooser3.getSelectedFiles();
+
+            }
+        }
+
+        // call add file method
 
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        jTextField1.setText("");
+        int selectedFiles = 0;
 
         for (int i = 0; i < jTable1.getRowCount(); i++) {
 
             if (jTable1.getValueAt(i, 0).equals(true)) {
-                ((DefaultTableModel) jTable1.getModel()).removeRow(i);
-                filelists.remove(i);
-                i = -1;
+                selectedFiles++;
             }
 
         }
 
+        if (selectedFiles > 0) {
+
+            Object[] options = {"Shred Delete",
+                "Just Delete", "Cancel"};
+            int n = JOptionPane.showOptionDialog(this,
+                    "How would you like to delete this file(s)?",
+                    "Confirm Delete",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null, //do not use a custom Icon
+                    options, //the titles of buttons
+                    options[0]); //default button title
+
+            if (n == 0) {
+
+                // safe delete method
+            } else if (n == 1) {
+
+                jTextField1.setText("");
+
+                for (int i = 0; i < jTable1.getRowCount(); i++) {
+
+                    if (jTable1.getValueAt(i, 0).equals(true)) {
+                        ((DefaultTableModel) jTable1.getModel()).removeRow(i);
+                        filelists.remove(i);
+                        i = -1;
+                    }
+
+                }
+            }
+        } else {
+
+            JOptionPane.showMessageDialog(this,
+                    "No files have been selected",
+                    "No Files Selected",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -1000,6 +1112,8 @@ public class MainWindowSample extends javax.swing.JFrame {
         searchAll();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    JTree tree;
+
     private void searchAll() {
 
         String expr = jTextField1.getText();
@@ -1033,26 +1147,35 @@ public class MainWindowSample extends javax.swing.JFrame {
      * @param directoryName
      * @return
      */
-    public static void getFiles(String specifiedDirectory) {
+    public static void getFiles(File file) {
 
-        String files;
-        File directory = new File(specifiedDirectory);
-        File[] allFileList = directory.listFiles();
+        if (file.exists()) {
 
-        for (File allFileList1 : allFileList) {
+            if (file.isDirectory()) {
+                if (file.canRead()) {
 
-            if (allFileList1.isFile()) {
-                files = allFileList1.getName();
+                    File[] listOfFiles = file.listFiles();
+                    if (listOfFiles != null) {
+                        for (int i = 0; i < listOfFiles.length; i++) {
+                            getFiles(listOfFiles[i]);
+                        }
+                    }
+                }
+            } else if (file.isFile()) {
 
-                filelists.add(allFileList1);
-                //scan it  
-            } else if (allFileList1.isDirectory()) {
-                getFiles(allFileList1.getAbsolutePath());
+                if (file.canRead()) {
+
+                    filelists.add(file);
+
+                }
+
             }
+
         }
+
     }
-    
-        void openFile(File file1) {
+
+    void openFile(File file1) {
         try {
             if (Desktop.isDesktopSupported()) {
                 Desktop.getDesktop().open(file1);
@@ -1126,12 +1249,19 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
@@ -1143,7 +1273,6 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
@@ -1162,9 +1291,6 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem30;
-    private javax.swing.JMenuItem jMenuItem31;
-    private javax.swing.JMenuItem jMenuItem32;
-    private javax.swing.JMenuItem jMenuItem33;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
@@ -1175,7 +1301,6 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
@@ -1185,7 +1310,6 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator15;
     private javax.swing.JPopupMenu.Separator jSeparator16;
     private javax.swing.JPopupMenu.Separator jSeparator17;
-    private javax.swing.JPopupMenu.Separator jSeparator18;
     private javax.swing.JPopupMenu.Separator jSeparator19;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -1194,10 +1318,8 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator6;
     private javax.swing.JPopupMenu.Separator jSeparator7;
     private javax.swing.JPopupMenu.Separator jSeparator8;
-    private javax.swing.JPopupMenu.Separator jSeparator9;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTree jTree3;
     // End of variables declaration//GEN-END:variables
 
     class ImageRenderer extends DefaultTableCellRenderer {
@@ -1394,6 +1516,5 @@ public class MainWindowSample extends javax.swing.JFrame {
             super.fireEditingStopped();
         }
     }
-
 
 }
