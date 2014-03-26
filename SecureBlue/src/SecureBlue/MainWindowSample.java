@@ -1092,9 +1092,9 @@ public class MainWindowSample extends javax.swing.JFrame {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
 
-        JDialog ContactUsWindow = new ContactUsWindow(this, true);
-        ContactUsWindow.setLocationRelativeTo(this);
-        ContactUsWindow.setVisible(true);
+        JDialog ContactWindow = new ContactWindow(this, true);
+        ContactWindow.setLocationRelativeTo(this);
+        ContactWindow.setVisible(true);
 
 
     }//GEN-LAST:event_jMenuItem4ActionPerformed
