@@ -1,3 +1,5 @@
+package SecureBlue;
+
 
 import java.awt.Color;
 import java.awt.Component;
@@ -1128,6 +1130,10 @@ public class MainWindowSample extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
+         JDialog ReportBugWindow = new ReportBugWindow(this, true);
+        ReportBugWindow.setLocationRelativeTo(this);
+        ReportBugWindow.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     JTree tree;

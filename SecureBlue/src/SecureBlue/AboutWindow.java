@@ -1,3 +1,6 @@
+package SecureBlue;
+
+
 
 import java.awt.Color;
 import java.awt.Desktop;
@@ -53,9 +56,7 @@ public class AboutWindow extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
-        setMaximumSize(new java.awt.Dimension(510, 380));
         setMinimumSize(new java.awt.Dimension(510, 380));
-        setPreferredSize(new java.awt.Dimension(510, 380));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

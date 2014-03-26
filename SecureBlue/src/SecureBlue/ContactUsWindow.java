@@ -1,19 +1,4 @@
-
-import java.awt.Color;
-import java.io.UnsupportedEncodingException;
-import static java.lang.Thread.sleep;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
+package SecureBlue;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,9 +9,10 @@ import javax.swing.JOptionPane;
  *
  * @author TheThoetha
  */
-public class ContactUsWindow extends javax.swing.JDialog {
+import java.awt.Color;
+import javax.swing.JButton;
 
-    EmailThread emailContact = new EmailThread();
+public class ContactUsWindow extends javax.swing.JDialog {
 
     public JButton getjButton1() {
         return jButton1;
@@ -35,7 +21,6 @@ public class ContactUsWindow extends javax.swing.JDialog {
     public void setjButton1(JButton jButton1) {
         this.jButton1 = jButton1;
     }
-    Thread emailThread;
 
     /**
      * Creates new form ContactUsWindoww
@@ -69,6 +54,9 @@ public class ContactUsWindow extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("SecureBlue Contact Us");
+        setMinimumSize(new java.awt.Dimension(467, 269));
+        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -130,9 +118,9 @@ public class ContactUsWindow extends javax.swing.JDialog {
                     .addComponent(jScrollPane1)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(6, 6, 6))
         );
         jPanel3Layout.setVerticalGroup(
@@ -146,7 +134,7 @@ public class ContactUsWindow extends javax.swing.JDialog {
                 .addComponent(jLabel5)
                 .addGap(6, 6, 6)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6))
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -164,7 +152,7 @@ public class ContactUsWindow extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6))
         );
@@ -177,9 +165,10 @@ public class ContactUsWindow extends javax.swing.JDialog {
 
         jButton1.setText("Sending...");
         jButton1.setEnabled(false);
-
+        jButton2.setEnabled(false);
         emailContact = new EmailThread();
         emailContact.setB1(jButton1);
+        emailContact.setB2(jButton2);
         emailContact.setTopic("SecureBlue Contact Us");
         emailContact.setContactWindow(this);
         emailContact.setUsername(null);
@@ -247,7 +236,8 @@ public class ContactUsWindow extends javax.swing.JDialog {
             }
         });
     }
-
+    private EmailThread emailContact = new EmailThread();
+    private Thread emailThread;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea contactMessage;
     public javax.swing.JButton jButton1;
