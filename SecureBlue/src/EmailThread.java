@@ -3,18 +3,23 @@ import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /*
@@ -29,7 +34,21 @@ import javax.swing.JOptionPane;
 public class EmailThread implements Runnable {
 
     static Thread emailThread;
+
+    public void setMessageSent(boolean messageSent) {
+        this.messageSent = messageSent;
+    }
+
+    public void setAttachment(boolean attachment) {
+        this.attachment = attachment;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
     boolean messageSent = false;
+    boolean attachment = false;
+    String filePath;
 
     public static Thread getEmailThread() {
         return emailThread;
@@ -127,21 +146,39 @@ public class EmailThread implements Runnable {
                 });
 
         try {
+            Multipart multipart = new MimeMultipart();
+
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("securebluecontactus@gmail.com", topic));
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse("SecureBlueEncryptionSoftware@gmail.com"));
             message.setSubject("SecureBlue Sutie | " + username);
-            message.setText("\nUsername: " + username
+
+            MimeBodyPart messageBodyPart1 = new MimeBodyPart();
+            messageBodyPart1.setText("\nUsername: " + username
                     + "\nEmail Address: " + email
                     + "\nSubject: " + subject
-                    + "\nMessage: " + messageE
-            );
+                    + "\n" + messageE);
+
+            multipart.addBodyPart(messageBodyPart1);
+
+            if (attachment) {
+                MimeBodyPart messageBodyPart = new MimeBodyPart();
+
+                messageBodyPart = new MimeBodyPart();
+                String file = filePath;
+                String fileName = "User Attachment";
+                DataSource source = new FileDataSource(file);
+                messageBodyPart.setDataHandler(new DataHandler(source));
+                messageBodyPart.setFileName(fileName);
+                multipart.addBodyPart(messageBodyPart);
+
+            }
+            message.setContent(multipart);
 
             Transport.send(message);
             messageSent = true;
 
-            
         } catch (AddressException ex) {
             Logger.getLogger(EmailThread.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MessagingException | UnsupportedEncodingException ex) {
@@ -150,14 +187,13 @@ public class EmailThread implements Runnable {
         sentMessagePopup(contactWindow);
     }
 
-    private void sentMessagePopup(JDialog j1) {   
-        
-        
+    private void sentMessagePopup(JDialog j1) {
+
         if (messageSent) {
-            
-             b1.setText("Send");
-             b1.setEnabled(true);
-             
+
+            b1.setText("Send");
+            b1.setEnabled(true);
+
             ImageIcon icon = new ImageIcon(getClass().getResource("graphic_About/graphic_Contact/email_go.png"));
 
             JOptionPane.showMessageDialog(j1,
@@ -167,20 +203,18 @@ public class EmailThread implements Runnable {
                     icon);
 
         } else {
-            
+
             b1.setText("Send");
             b1.setEnabled(true);
-            
+
             ImageIcon icon = new ImageIcon(getClass().getResource("graphic_About/graphic_Contact/email_error.png"));
 
             JOptionPane.showMessageDialog(j1,
                     "Your message has not been sent"
-                            + "Please See User Guide For Assistance",
+                    + "Please See User Guide For Assistance",
                     "SecureBlue | Message Error",
                     JOptionPane.INFORMATION_MESSAGE,
                     icon);
-            
-            
 
         }
 

@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.io.UnsupportedEncodingException;
 import static java.lang.Thread.sleep;
 import java.util.Properties;
@@ -45,6 +46,7 @@ public class ContactUsWindow extends javax.swing.JDialog {
     public ContactUsWindow(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.getContentPane().setBackground(Color.WHITE);
     }
 
     /**
@@ -68,6 +70,8 @@ public class ContactUsWindow extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
         jButton1.setText("Send");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,9 +91,9 @@ public class ContactUsWindow extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,11 +104,19 @@ public class ContactUsWindow extends javax.swing.JDialog {
                     .addComponent(jButton2)))
         );
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
         contactMessage.setColumns(20);
         contactMessage.setRows(5);
         jScrollPane1.setViewportView(contactMessage);
 
         jLabel5.setText("Message:");
+
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Subject:");
 
@@ -141,11 +153,11 @@ public class ContactUsWindow extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(6, 6, 6))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,35 +174,37 @@ public class ContactUsWindow extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-            
-            jButton1.setText("Sending...");
-            jButton1.setEnabled(false);
-            
-            
-            emailContact = new EmailThread();
-            emailContact.setB1(jButton1);
-            emailContact.setTopic("SecureBlue Contact Us");
-            emailContact.setContactWindow(this);
-            emailContact.setUsername(null);
-            emailContact.setEmail(null);
-            emailContact.setSubject(jTextField5.getText());
-            emailContact.setMessageE(contactMessage.getText());
-    
-            emailThread = new Thread(emailContact);
-            emailThread.start();
 
-            
+        jButton1.setText("Sending...");
+        jButton1.setEnabled(false);
+
+        emailContact = new EmailThread();
+        emailContact.setB1(jButton1);
+        emailContact.setTopic("SecureBlue Contact Us");
+        emailContact.setContactWindow(this);
+        emailContact.setUsername(null);
+        emailContact.setEmail(null);
+        emailContact.setSubject(jTextField5.getText());
+        emailContact.setMessageE("Message:\n" + contactMessage.getText());
+
+        emailThread = new Thread(emailContact);
+        emailThread.start();
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public void changestuff(String name){
+    public void changestuff(String name) {
         this.jButton1.setText(name);
     }
-    
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,5 +260,4 @@ public class ContactUsWindow extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 
- 
 }
