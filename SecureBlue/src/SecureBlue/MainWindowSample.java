@@ -1,6 +1,5 @@
 package SecureBlue;
 
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Desktop;
@@ -13,10 +12,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.text.DateFormat; 
+import java.net.URL;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Box;
 import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
@@ -754,6 +757,11 @@ public class MainWindowSample extends javax.swing.JFrame {
 
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Support/book_open.png"))); // NOI18N
         jMenuItem3.setText("User Guide");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
         jMenu2.add(jSeparator2);
 
@@ -1130,13 +1138,26 @@ public class MainWindowSample extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-         JDialog ReportBugWindow = new ReportBugWindow(this, true);
+        JDialog ReportBugWindow = new ReportBugWindow(this, true);
         ReportBugWindow.setLocationRelativeTo(this);
         ReportBugWindow.setVisible(true);
-        
+
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    JTree tree;
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        
+        File f = null ;
+        URL url = getClass().getResource("/user_Guide/SecureBlue User Guide.pdf");
+        try {
+             f = new File (url.toURI());
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(MainWindowSample.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        openFile(f);
+     
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void searchAll() {
 
