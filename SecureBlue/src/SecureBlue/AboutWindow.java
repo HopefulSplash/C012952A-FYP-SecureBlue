@@ -1,7 +1,5 @@
 package SecureBlue;
 
-
-
 import java.awt.Color;
 import java.awt.Desktop;
 import java.io.IOException;
@@ -14,7 +12,6 @@ import javax.swing.event.HyperlinkListener;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author TheThoetha
@@ -23,6 +20,7 @@ public class AboutWindow extends javax.swing.JDialog {
 
     /**
      * Creates new form AboutWindow
+     *
      * @param parent
      * @param modal
      */
@@ -31,9 +29,9 @@ public class AboutWindow extends javax.swing.JDialog {
         initComponents();
         this.getContentPane().setBackground(Color.WHITE);
         setupTextArea();
-        this.pack(); 
+        this.pack();
         this.setResizable(false);
-   }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,10 +52,8 @@ public class AboutWindow extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setAlwaysOnTop(true);
-        setMaximumSize(new java.awt.Dimension(533, 383));
-        setMinimumSize(new java.awt.Dimension(533, 383));
-        setPreferredSize(new java.awt.Dimension(533, 383));
+        setMaximumSize(new java.awt.Dimension(535, 329));
+        setMinimumSize(new java.awt.Dimension(535, 329));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -69,7 +65,7 @@ public class AboutWindow extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,9 +83,21 @@ public class AboutWindow extends javax.swing.JDialog {
 
         jTextPane2.setEditable(false);
         jTextPane2.setContentType("text/html"); // NOI18N
-        jTextPane2.setText("<html>\n\t<head>\n\t\t<title>HTML Online Editor Sample</title>\n\t</head>\n\t<body>\n\t\t<div>\n\t\t\tThe Secure<span style=\"color:#0000ff;\">Blue</span>&nbsp;Encryption Software Suite offers its users flexible encryption and decryption of sensitive documents with a variety of industry standard algorithms with Bluetooth functionality. For more information, please visit &nbsp;<a href=\\\"http://secureblue.weebly.com/\\\">http://SecureBlue.Weebly.com/</a></div>\n\t</body>\n</html>\n");
+        jTextPane2.setText("");
         jTextPane2.setHighlighter(null);
         jScrollPane1.setViewportView(jTextPane2);
+        jTextPane2.addHyperlinkListener(new HyperlinkListener() {
+            public void hyperlinkUpdate(HyperlinkEvent e) {
+                if(e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+                    if(Desktop.isDesktopSupported()) {
+                        try {
+                            Desktop.getDesktop().browse(e.getURL().toURI());
+                        } catch (IOException | URISyntaxException ex) {
+                        }
+                    }
+                }
+            }
+        });
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -121,25 +129,22 @@ public class AboutWindow extends javax.swing.JDialog {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
-                .addGap(0, 0, 0))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(220, 220, 220)
+                .addGap(232, 232, 232)
                 .addComponent(jButton1)
-                .addGap(220, 220, 220))
+                .addGap(232, 232, 232))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(6, 6, 6)
                 .addComponent(jButton1))
         );
 
@@ -214,7 +219,8 @@ public class AboutWindow extends javax.swing.JDialog {
             }
         });
     }
- private void setupTextArea() {
+
+    private void setupTextArea() {
 
         aboutJava = System.getProperty("java.version") + " " + System.getProperty("java.vm.name")
                 + " " + System.getProperty("java.vm.version");
@@ -227,7 +233,6 @@ public class AboutWindow extends javax.swing.JDialog {
 
         jTextPane1.setText("<html>\n"
                 + "	<head>\n"
-                + "		<title>HTML Online Editor Sample</title>\n"
                 + "	</head>\n"
                 + "	<body>\n"
                 + "		<div>\n"
@@ -246,6 +251,17 @@ public class AboutWindow extends javax.swing.JDialog {
                 + "</html>\n"
                 + "");
 
+        jTextPane2.setText("<html>\n"
+                + "	<head>\n"
+                + "	</head>\n"
+                + "	<body>\n"
+                + "The Secure<span style=\\\"color:#0000ff;\\\">Blue</span>&nbsp;Encryption Software Suite"
+                + "offers its users flexible encryption and decryption of sensitive documents with a variety "
+                + "of industry standard algorithms with Bluetooth functionality. For more information, please "
+                + "visit&nbsp;<a href=\"http://secureblue.weebly.com/\">http://SecureBlue.Weebly.com/</a></div>"
+                + "	</body>\n"
+                + "</html>\n"
+                + "");
     }
 
     private String aboutJava;

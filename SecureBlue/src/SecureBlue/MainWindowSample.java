@@ -687,6 +687,11 @@ public class MainWindowSample extends javax.swing.JFrame {
 
         jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Setting/cog.png"))); // NOI18N
         jMenuItem9.setText("General");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem9);
         jMenu4.add(jSeparator4);
 
@@ -1158,6 +1163,10 @@ public class MainWindowSample extends javax.swing.JFrame {
         openFile(f);
      
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void searchAll() {
 

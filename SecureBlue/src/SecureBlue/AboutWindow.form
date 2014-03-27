@@ -3,15 +3,11 @@
 <Form version="1.8" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="alwaysOnTop" type="boolean" value="true"/>
     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[533, 383]"/>
+      <Dimension value="[535, 329]"/>
     </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[533, 383]"/>
-    </Property>
-    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[533, 383]"/>
+      <Dimension value="[535, 329]"/>
     </Property>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
@@ -67,7 +63,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jLabel2" alignment="1" pref="521" max="32767" attributes="0"/>
+              <Component id="jLabel2" alignment="1" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -101,18 +97,14 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="232" max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="232" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -120,10 +112,10 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="65" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" pref="126" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -148,11 +140,14 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="contentType" type="java.lang.String" value="text/html" noResource="true"/>
-                <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&#x9;&lt;head&gt;&#xa;&#x9;&#x9;&lt;title&gt;HTML Online Editor Sample&lt;/title&gt;&#xa;&#x9;&lt;/head&gt;&#xa;&#x9;&lt;body&gt;&#xa;&#x9;&#x9;&lt;div&gt;&#xa;&#x9;&#x9;&#x9;The Secure&lt;span style=&quot;color:#0000ff;&quot;&gt;Blue&lt;/span&gt;&amp;nbsp;Encryption Software Suite offers its users flexible encryption and decryption of sensitive documents with a variety of industry standard algorithms with Bluetooth functionality. For more information, please visit &amp;nbsp;&lt;a href=\u005c&quot;http://secureblue.weebly.com/\u005c&quot;&gt;http://SecureBlue.Weebly.com/&lt;/a&gt;&lt;/div&gt;&#xa;&#x9;&lt;/body&gt;&#xa;&lt;/html&gt;&#xa;" containsInvalidXMLChars="true"/>
+                <Property name="text" type="java.lang.String" value=""/>
                 <Property name="highlighter" type="javax.swing.text.Highlighter" editor="org.netbeans.modules.form.ComponentChooserEditor">
                   <ComponentRef name="null"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jTextPane2.addHyperlinkListener(new HyperlinkListener() {&#xa;            public void hyperlinkUpdate(HyperlinkEvent e) {&#xa;                if(e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {&#xa;                    if(Desktop.isDesktopSupported()) {&#xa;                        try {&#xa;                            Desktop.getDesktop().browse(e.getURL().toURI());&#xa;                        } catch (IOException | URISyntaxException ex) {&#xa;                        }&#xa;                    }&#xa;                }&#xa;            }&#xa;        });"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
