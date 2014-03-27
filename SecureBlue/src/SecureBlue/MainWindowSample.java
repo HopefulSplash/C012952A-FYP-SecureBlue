@@ -877,104 +877,22 @@ public class MainWindowSample extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable1FocusLost
 
+    ArrayList<File> addFiles = new ArrayList();
+
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
 
-        File[] files;
+        AddWindow aw = new AddWindow(this, true);
 
-        Object[] options = {"File",
-            "Folder",
-            "Drive",
-            "External Device",
-            "Cancel"};
-        int n = JOptionPane.showOptionDialog(this,
-                "Would you like some green eggs to go "
-                + "with that ham?",
-                "A Silly Question",
-                JOptionPane.YES_NO_CANCEL_OPTION,
-                JOptionPane.QUESTION_MESSAGE,
-                null,
-                options,
-                options[4]);
-
-        if (n == 0) {
-            JFileChooser chooser = new JFileChooser();
-            chooser.setCurrentDirectory(new File(System.getProperty("user.home") + File.separator + System.getProperty("user.name") + File.separator + "Documents"));
-
-            javax.swing.Action details = chooser.getActionMap().get("viewTypeDetails");
-            details.actionPerformed(null);
-            chooser.setMultiSelectionEnabled(true);
-            chooser.setDragEnabled(true);
-            chooser.setDialogTitle("Select A File");
-            chooser.setApproveButtonText("Add");
-            chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-
-            int returnVal = chooser.showOpenDialog(this);
-
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
-
-                files = chooser.getSelectedFiles();
-
-            }
-
-        } else if (n == 1) {
-            JFileChooser chooser1 = new JFileChooser();
-            javax.swing.Action details = chooser1.getActionMap().get("viewTypeDetails");
-            details.actionPerformed(null);
-            chooser1.setCurrentDirectory(new File(System.getProperty("user.home") + File.separator + System.getProperty("user.name") + File.separator + "Documents"));
-            chooser1.setMultiSelectionEnabled(true);
-
-            chooser1.setDialogTitle("Select A Folder");
-            chooser1.setApproveButtonText("Add");
-            chooser1.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-
-            int returnVal = chooser1.showOpenDialog(this);
-
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
-
-                files = chooser1.getSelectedFiles();
-
-            }
-        } else if (n == 2) {
-            JFileChooser chooser2 = new JFileChooser();
-            javax.swing.Action details = chooser2.getActionMap().get("viewTypeDetails");
-            details.actionPerformed(null);
-            chooser2.setMultiSelectionEnabled(true);
-
-            chooser2.setCurrentDirectory(chooser2.getFileSystemView().getParentDirectory(new File(System.getProperty("user.home")).getParentFile().getParentFile()));
-            chooser2.setDialogTitle("Select A Drive");
-            chooser2.setApproveButtonText("Add");
-            chooser2.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-
-            int returnVal = chooser2.showOpenDialog(this);
-
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
-
-                files = chooser2.getSelectedFiles();
-
-            }
-        } else if (n == 3) {
-            JFileChooser chooser3 = new JFileChooser();
-            javax.swing.Action details = chooser3.getActionMap().get("viewTypeDetails");
-            details.actionPerformed(null);
-            chooser3.setMultiSelectionEnabled(true);
-
-            chooser3.setCurrentDirectory(chooser3.getFileSystemView().getParentDirectory(new File(System.getProperty("user.home")).getParentFile().getParentFile()));
-            chooser3.setDialogTitle("Select A External Device");
-            chooser3.setApproveButtonText("Add");
-            chooser3.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-
-            int returnVal = chooser3.showOpenDialog(this);
-
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
-
-                files = chooser3.getSelectedFiles();
-
-            }
+        addFiles = aw.getArrayFiles();
+        
+        
+        for (int i = 0; i < addFiles.size(); i++){
+            //validation
+            //add to program
+            
         }
-
-        // call add file method
-
+ 
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -1140,17 +1058,17 @@ public class MainWindowSample extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        
-        File f = null ;
+
+        File f = null;
         URL url = getClass().getResource("/user_Guide/SecureBlue User Guide.pdf");
         try {
-             f = new File (url.toURI());
+            f = new File(url.toURI());
         } catch (URISyntaxException ex) {
             Logger.getLogger(MainWindowSample.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         openFile(f);
-     
+
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
@@ -1161,8 +1079,8 @@ public class MainWindowSample extends javax.swing.JFrame {
         // TODO add your handling code here:
         EncryptionWindow ew = new EncryptionWindow(this, true);
         ew.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void searchAll() {
