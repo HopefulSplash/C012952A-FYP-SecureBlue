@@ -136,10 +136,6 @@ public class MainWindowSample extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         Saple = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
@@ -152,11 +148,16 @@ public class MainWindowSample extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jToolBar1 = new javax.swing.JToolBar();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -255,6 +256,11 @@ public class MainWindowSample extends javax.swing.JFrame {
         jButton9.setBackground(new java.awt.Color(255, 255, 255));
         jButton9.setText("Encrypt");
         jButton9.setFocusPainted(false);
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setBackground(new java.awt.Color(255, 255, 255));
         jButton10.setText("Decrypt");
@@ -306,77 +312,6 @@ public class MainWindowSample extends javax.swing.JFrame {
         );
 
         jButton7.getAccessibleContext().setAccessibleName("");
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setPreferredSize(new java.awt.Dimension(691, 21));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Statusbar/bluetooth.png"))); // NOI18N
-        jLabel2.setText("Bluetooth Device: ");
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Statusbar/date.png"))); // NOI18N
-        jLabel1.setText("Time Timer");
-
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Statusbar/stopwatch_start.png"))); // NOI18N
-        jLabel3.setText("Time Elapsed: ");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(2, 2, 2)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(2, 2, 2))
-        );
-
-        Timer timee = new javax.swing.Timer(1000, new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                java.util.Date now = new java.util.Date();
-                String ss = DateFormat.getDateTimeInstance().format(now);
-                jLabel1.setText("System Date & Time: " + ss);
-                jLabel1.setToolTipText("System Date & Time: " + ss);
-
-            }
-        });
-        timee.start();
-        Timer timee1 = new javax.swing.Timer(1000, new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    long end = System.currentTimeMillis( );
-                    long diff = end - start;
-                    long second = (diff / 1000) % 60;
-                    long minute = (diff / (1000 * 60)) % 60;
-                    long hour = (diff / (1000 * 60 * 60)) % 24;
-
-                    String time = String.format("Session Time: %02d:%02d:%02d", hour, minute, second);
-                    jLabel3.setText(time);
-                } catch (Exception ex) {
-                    System.out.println("Got an exception!");
-                }
-
-            }
-        });
-        timee1.start();
 
         Saple.setBackground(new java.awt.Color(255, 255, 255));
         Saple.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -478,6 +413,8 @@ public class MainWindowSample extends javax.swing.JFrame {
 
         jButton3.setText("More Stats");
 
+        jLabel13.setText("File Statisics");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -485,6 +422,7 @@ public class MainWindowSample extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -504,6 +442,8 @@ public class MainWindowSample extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel10)
@@ -590,6 +530,56 @@ public class MainWindowSample extends javax.swing.JFrame {
 
             }
         });
+
+        jToolBar1.setBackground(new java.awt.Color(255, 255, 255));
+        jToolBar1.setFloatable(false);
+        jToolBar1.setRollover(true);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Statusbar/bluetooth.png"))); // NOI18N
+        jLabel2.setText("Bluetooth Device: ");
+        jToolBar1.add(jLabel2);
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Statusbar/stopwatch_start.png"))); // NOI18N
+        jLabel3.setText("Time Elapsed: ");
+        jToolBar1.add(jLabel3);
+        Timer timee1 = new javax.swing.Timer(1000, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    long end = System.currentTimeMillis( );
+                    long diff = end - start;
+                    long second = (diff / 1000) % 60;
+                    long minute = (diff / (1000 * 60)) % 60;
+                    long hour = (diff / (1000 * 60 * 60)) % 24;
+
+                    String time = String.format("Session Time: %02d:%02d:%02d", hour, minute, second);
+                    jLabel3.setText(time);
+                } catch (Exception ex) {
+                    System.out.println("Got an exception!");
+                }
+
+            }
+        });
+        timee1.start();
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Statusbar/date.png"))); // NOI18N
+        jLabel1.setText("Time Timer");
+        jToolBar1.add(jLabel1);
+        Timer timee = new javax.swing.Timer(1000, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                java.util.Date now = new java.util.Date();
+                String ss = DateFormat.getDateTimeInstance().format(now);
+                jLabel1.setText("System Date & Time: " + ss);
+                jLabel1.setToolTipText("System Date & Time: " + ss);
+
+            }
+        });
+        timee.start();
 
         jMenuBar1.setBorder(null);
 
@@ -845,7 +835,8 @@ public class MainWindowSample extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(layout.createSequentialGroup()
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -855,8 +846,7 @@ public class MainWindowSample extends javax.swing.JFrame {
                     .addComponent(Saple)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1300, Short.MAX_VALUE)
+                        .addGap(0, 12, Short.MAX_VALUE))))
             .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
         );
         layout.setVerticalGroup(
@@ -871,12 +861,11 @@ public class MainWindowSample extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Saple, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)))
-                .addGap(6, 6, 6)
+                        .addComponent(Saple, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)))
+                .addGap(3, 3, 3)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         getContentPane().setBackground(Color.WHITE);
@@ -1168,6 +1157,14 @@ public class MainWindowSample extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        EncryptionWindow ew = new EncryptionWindow(this, true);
+        ew.setVisible(true);
+        
+        
+    }//GEN-LAST:event_jButton9ActionPerformed
+
     private void searchAll() {
 
         String expr = jTextField1.getText();
@@ -1307,6 +1304,7 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1353,7 +1351,6 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPopupMenu.Separator jSeparator1;
@@ -1375,6 +1372,7 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 
     class ImageRenderer extends DefaultTableCellRenderer {
