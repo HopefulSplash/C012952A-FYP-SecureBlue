@@ -1,6 +1,5 @@
 package SecureBlue;
 
-
 import java.awt.Color;
 import java.awt.image.ImageFilter;
 import java.io.File;
@@ -249,7 +248,7 @@ public class ReportBugWindow extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -305,16 +304,36 @@ public class ReportBugWindow extends javax.swing.JDialog {
                     addFile = true;
                 }
             }
-            if (addFile) {
-                attachment = new File(fileOpen.getSelectedFile().getAbsolutePath());
-                jTextField2.setText(attachment.getAbsolutePath());
+
+            if (jTextField2.getText().isEmpty()) {
+                if (addFile) {
+                    attachment = new File(fileOpen.getSelectedFile().getAbsolutePath());
+                    jTextField2.setText(attachment.getAbsolutePath());
+                } else {
+                    JOptionPane.showMessageDialog(this,
+                            "Wrong File Type Selected"
+                            + "Please Select An Image",
+                            "SecureBlue | Attachment Error",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(this,
-                        "Wrong File Type Selected"
-                        + "Please Select An Image",
-                        "SecureBlue | Attachment Error",
-                        JOptionPane.INFORMATION_MESSAGE);
+                Object[] options = {"Yes",
+                    "No"};
+                int n = JOptionPane.showOptionDialog(this,
+                        "Would you like override current attachment",
+                        "Override Attachment",
+                        JOptionPane.YES_NO_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE,
+                        null,
+                        options,
+                        options[1]);
+                
+                if (n == 0){
+                    attachment = new File(fileOpen.getSelectedFile().getAbsolutePath());
+                    jTextField2.setText(attachment.getAbsolutePath());
+                }
             }
+
         } else {
             JOptionPane.showMessageDialog(this,
                     "File doesnt exsist"
@@ -333,11 +352,10 @@ public class ReportBugWindow extends javax.swing.JDialog {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-        
-        if (jComboBox1.getSelectedIndex() == jComboBox1.getItemCount()-1){
+
+        if (jComboBox1.getSelectedIndex() == jComboBox1.getItemCount() - 1) {
             jTextField3.setEditable(true);
-        }
-        else {
+        } else {
             jTextField3.setText("");
             jTextField3.setEditable(false);
         }

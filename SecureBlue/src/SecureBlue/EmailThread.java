@@ -286,7 +286,7 @@ public class EmailThread implements Runnable {
             b1.setEnabled(true);
             b2.setEnabled(true);
 
-            ImageIcon icon = new ImageIcon(getClass().getResource("graphic_About/graphic_Contact/email_go.png"));
+            ImageIcon icon = new ImageIcon(getClass().getResource("graphic_EmailThread/email_go.png"));
 
             JOptionPane.showMessageDialog(j1,
                     "Your message has been sent",
@@ -300,7 +300,7 @@ public class EmailThread implements Runnable {
             b1.setEnabled(true);
             b2.setEnabled(true);
 
-            ImageIcon icon = new ImageIcon(getClass().getResource("graphic_About/graphic_Contact/email_error.png"));
+            ImageIcon icon = new ImageIcon(getClass().getResource("graphic_EmailThread/email_error.png"));
 
             JOptionPane.showMessageDialog(j1,
                     "Your message has not been sent"
