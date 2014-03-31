@@ -155,16 +155,10 @@ public class MainWindowSample extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem38 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem14 = new javax.swing.JMenuItem();
-        jSeparator9 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem33 = new javax.swing.JMenuItem();
-        jMenuItem32 = new javax.swing.JMenuItem();
-        jSeparator18 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem31 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem18 = new javax.swing.JMenuItem();
         jSeparator7 = new javax.swing.JPopupMenu.Separator();
@@ -172,8 +166,20 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenuItem21 = new javax.swing.JMenuItem();
         jSeparator8 = new javax.swing.JPopupMenu.Separator();
         jMenuItem22 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jSeparator9 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem33 = new javax.swing.JMenuItem();
+        jMenuItem32 = new javax.swing.JMenuItem();
+        jSeparator18 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem31 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
-        jSeparator21 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem35 = new javax.swing.JMenuItem();
+        jSeparator22 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem37 = new javax.swing.JMenuItem();
+        jMenuItem36 = new javax.swing.JMenuItem();
+        jSeparator20 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem34 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem30 = new javax.swing.JMenuItem();
         jSeparator14 = new javax.swing.JPopupMenu.Separator();
@@ -215,6 +221,8 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jSeparator21 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem39 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SecureBlue Encryption Software");
@@ -544,9 +552,14 @@ public class MainWindowSample extends javax.swing.JFrame {
 
         jMenuBar1.setBorder(null);
 
-        jMenu1.setText("File");
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Home/house.png"))); // NOI18N
+        jMenu1.setText("Home");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_File/door_out.png"))); // NOI18N
+        jMenuItem38.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Home/door_in.png"))); // NOI18N
+        jMenuItem38.setText("Login");
+        jMenu1.add(jMenuItem38);
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Home/door_out.png"))); // NOI18N
         jMenuItem1.setText("Logout");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -557,7 +570,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenu1.add(jSeparator1);
 
         jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_File/cross.png"))); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Home/cross.png"))); // NOI18N
         jMenuItem2.setText("Exit");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -568,38 +581,10 @@ public class MainWindowSample extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu3.setText("File Managment");
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Device/transmit.png"))); // NOI18N
+        jMenu6.setText("External Device");
 
-        jMenuItem14.setText("Currently Folder");
-        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem14ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem14);
-        jMenu3.add(jSeparator9);
-
-        jMenuItem33.setText("Create New Folder");
-        jMenuItem33.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem33ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem33);
-
-        jMenuItem32.setText("Delete Folder");
-        jMenu3.add(jMenuItem32);
-        jMenu3.add(jSeparator18);
-
-        jMenuItem31.setText("Manage Folder");
-        jMenu3.add(jMenuItem31);
-
-        jMenuBar1.add(jMenu3);
-
-        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Device/phone.png"))); // NOI18N
-        jMenu6.setText("Device");
-
-        jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Device/bluetooth.png"))); // NOI18N
+        jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Device/transmit.png"))); // NOI18N
         jMenuItem18.setText("No Device Connected");
         jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -609,7 +594,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenu6.add(jMenuItem18);
         jMenu6.add(jSeparator7);
 
-        jMenuItem20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Device/phone_add.png"))); // NOI18N
+        jMenuItem20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Device/transmit_add.png"))); // NOI18N
         jMenuItem20.setText("Connect Device");
         jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -618,23 +603,84 @@ public class MainWindowSample extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem20);
 
-        jMenuItem21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Device/phone_delete.png"))); // NOI18N
+        jMenuItem21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Device/transmit_delete.png"))); // NOI18N
         jMenuItem21.setText("Disconnect Device");
         jMenu6.add(jMenuItem21);
         jMenu6.add(jSeparator8);
 
-        jMenuItem22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Device/phone.png"))); // NOI18N
+        jMenuItem22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Device/transmit_edit.png"))); // NOI18N
         jMenuItem22.setText("Manage Devices");
         jMenu6.add(jMenuItem22);
 
         jMenuBar1.add(jMenu6);
 
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Folder/folder.png"))); // NOI18N
+        jMenu3.setText("Folder Management");
+
+        jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Folder/folder.png"))); // NOI18N
+        jMenuItem14.setText("No Folder Selected");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem14);
+        jMenu3.add(jSeparator9);
+
+        jMenuItem33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Folder/folder_add.png"))); // NOI18N
+        jMenuItem33.setText("Create Folder");
+        jMenuItem33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem33ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem33);
+
+        jMenuItem32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Folder/folder_delete.png"))); // NOI18N
+        jMenuItem32.setText("Delete Folder");
+        jMenu3.add(jMenuItem32);
+        jMenu3.add(jSeparator18);
+
+        jMenuItem31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Folder/folder_edit.png"))); // NOI18N
+        jMenuItem31.setText("Manage Folders");
+        jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem31ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem31);
+
+        jMenuBar1.add(jMenu3);
+
         jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Workstation/computer.png"))); // NOI18N
-        jMenu9.setText("Work Station");
-        jMenu9.add(jSeparator21);
+        jMenu9.setText("Workstation");
+
+        jMenuItem35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Workstation/computer.png"))); // NOI18N
+        jMenuItem35.setText("No Workstation Selected");
+        jMenu9.add(jMenuItem35);
+        jMenu9.add(jSeparator22);
+
+        jMenuItem37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Workstation/computer_add.png"))); // NOI18N
+        jMenuItem37.setText("Add Workstation");
+        jMenu9.add(jMenuItem37);
+
+        jMenuItem36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Workstation/computer_delete.png"))); // NOI18N
+        jMenuItem36.setText("Delete Workstation");
+        jMenuItem36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem36ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem36);
+        jMenu9.add(jSeparator20);
+
+        jMenuItem34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Workstation/computer_edit.png"))); // NOI18N
+        jMenuItem34.setText("Manage Workstations");
+        jMenu9.add(jMenuItem34);
 
         jMenuBar1.add(jMenu9);
 
+        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Extra/flag_airfield_vehicle_safety.png"))); // NOI18N
         jMenu8.setText("Extras");
 
         jMenuItem30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Extra/compress.png"))); // NOI18N
@@ -718,6 +764,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenu4.add(jMenuItem25);
         jMenu4.add(jSeparator10);
 
+        jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Setting/flag_airfield_vehicle_safety.png"))); // NOI18N
         jMenu7.setText("Extras");
 
         jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Setting/compress.png"))); // NOI18N
@@ -776,7 +823,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenu2.add(jMenuItem5);
         jMenu2.add(jSeparator19);
 
-        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_About/comment.png"))); // NOI18N
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Support/information.png"))); // NOI18N
         jMenuItem8.setText("About");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -831,6 +878,16 @@ public class MainWindowSample extends javax.swing.JFrame {
             }
         });
         jMenu5.add(jMenuItem7);
+        jMenu5.add(jSeparator21);
+
+        jMenuItem39.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_SayHello/email.png"))); // NOI18N
+        jMenuItem39.setText("Our Email Address");
+        jMenuItem39.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem39ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem39);
 
         jMenuBar1.add(jMenu5);
 
@@ -1118,6 +1175,21 @@ public class MainWindowSample extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem33ActionPerformed
 
+    private void jMenuItem36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem36ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem36ActionPerformed
+
+    private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem31ActionPerformed
+
+    private void jMenuItem39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem39ActionPerformed
+        // TODO add your handling code here:
+        EmailAddressDialog eaD = new EmailAddressDialog(this, true);
+        eaD.setVisible(true);
+       
+    }//GEN-LAST:event_jMenuItem39ActionPerformed
+
     private void searchAll() {
 
         String expr = jTextField1.getText();
@@ -1297,6 +1369,12 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem32;
     private javax.swing.JMenuItem jMenuItem33;
+    private javax.swing.JMenuItem jMenuItem34;
+    private javax.swing.JMenuItem jMenuItem35;
+    private javax.swing.JMenuItem jMenuItem36;
+    private javax.swing.JMenuItem jMenuItem37;
+    private javax.swing.JMenuItem jMenuItem38;
+    private javax.swing.JMenuItem jMenuItem39;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
@@ -1318,7 +1396,9 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator18;
     private javax.swing.JPopupMenu.Separator jSeparator19;
     private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator20;
     private javax.swing.JPopupMenu.Separator jSeparator21;
+    private javax.swing.JPopupMenu.Separator jSeparator22;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
