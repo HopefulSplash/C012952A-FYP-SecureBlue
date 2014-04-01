@@ -754,11 +754,21 @@ public class MainWindowSample extends javax.swing.JFrame {
 
         jMenuItem40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Setting/computer.png"))); // NOI18N
         jMenuItem40.setText("Workstation");
+        jMenuItem40.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem40ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem40);
         jMenu4.add(jSeparator5);
 
         jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Setting/lock.png"))); // NOI18N
         jMenuItem16.setText("Encryption");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem16);
         jMenu4.add(jSeparator10);
 
@@ -777,20 +787,40 @@ public class MainWindowSample extends javax.swing.JFrame {
 
         jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Setting/document_shred.png"))); // NOI18N
         jMenuItem12.setText("Shredding");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem12);
 
         jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Setting/bomb.png"))); // NOI18N
         jMenuItem11.setText("Self Destruct");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem11);
         jMenu7.add(jSeparator17);
 
         jMenuItem24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Setting/system_monitor.png"))); // NOI18N
         jMenuItem24.setText("Hacking Monitoring");
+        jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem24ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem24);
         jMenu7.add(jSeparator15);
 
         jMenuItem23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Setting/network_cloud.png"))); // NOI18N
         jMenuItem23.setText("Cloud Storage");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem23);
 
         jMenu4.add(jMenu7);
@@ -945,14 +975,13 @@ public class MainWindowSample extends javax.swing.JFrame {
         AddWindow aw = new AddWindow(this, true);
 
         addFiles = aw.getArrayFiles();
-        
-        
-        for (int i = 0; i < addFiles.size(); i++){
+
+        for (int i = 0; i < addFiles.size(); i++) {
             //validation
             //add to program
-            
+
         }
- 
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -1032,6 +1061,11 @@ public class MainWindowSample extends javax.swing.JFrame {
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // TODO add your handling code here:
+        Settings sw = new Settings();
+                sw.getjTabbedPane1().setSelectedIndex(3);
+
+        sw.setVisible(true);
+
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -1044,7 +1078,7 @@ public class MainWindowSample extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        
+
         //close script
         System.exit(0);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -1059,6 +1093,11 @@ public class MainWindowSample extends javax.swing.JFrame {
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         // TODO add your handling code here:
+        Settings sw = new Settings();
+                sw.getjTabbedPane1().setSelectedIndex(6);
+
+        sw.setVisible(true);
+
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
@@ -1139,10 +1178,12 @@ public class MainWindowSample extends javax.swing.JFrame {
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
-        
+
         Settings sw = new Settings();
-        sw.setMenuIndex(0);
-        
+        sw.getjTabbedPane1().setSelectedIndex(0);
+        sw.setVisible(true);
+
+
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -1156,13 +1197,20 @@ public class MainWindowSample extends javax.swing.JFrame {
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // TODO add your handling code here:
         Settings sw = new Settings();
-        sw.setMenuIndex(1);
+        sw.getjTabbedPane1().setSelectedIndex(1);
+
+        sw.setVisible(true);
+       
+
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         // TODO add your handling code here:
         Settings sw = new Settings();
-        sw.setMenuIndex(3);
+                sw.getjTabbedPane1().setSelectedIndex(2);
+
+        sw.setVisible(true);
+
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
@@ -1185,8 +1233,63 @@ public class MainWindowSample extends javax.swing.JFrame {
         // TODO add your handling code here:
         EmailAddressDialog eaD = new EmailAddressDialog(this, true);
         eaD.setVisible(true);
-       
+
     }//GEN-LAST:event_jMenuItem39ActionPerformed
+
+    private void jMenuItem40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem40ActionPerformed
+        // TODO add your handling code here:
+        Settings sw = new Settings();
+               sw.getjTabbedPane1().setSelectedIndex(4);
+
+        sw.setVisible(true);
+
+    }//GEN-LAST:event_jMenuItem40ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        // TODO add your handling code here:
+        Settings sw = new Settings();
+                sw.getjTabbedPane1().setSelectedIndex(5);
+
+        sw.setVisible(true);
+
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        // TODO add your handling code here:
+        Settings sw = new Settings();
+        sw.getjTabbedPane1().setSelectedIndex(7);
+
+        sw.setVisible(true);
+      
+
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        // TODO add your handling code here:
+        Settings sw = new Settings();
+               sw.getjTabbedPane1().setSelectedIndex(8);
+
+        sw.setVisible(true);
+
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
+        // TODO add your handling code here:
+        Settings sw = new Settings();
+                sw.getjTabbedPane1().setSelectedIndex(9);
+
+        sw.setVisible(true);
+
+    }//GEN-LAST:event_jMenuItem24ActionPerformed
+
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+        // TODO add your handling code here:
+        Settings sw = new Settings();
+               sw.getjTabbedPane1().setSelectedIndex(10);
+
+        sw.setVisible(true);
+
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
 
     private void searchAll() {
 
