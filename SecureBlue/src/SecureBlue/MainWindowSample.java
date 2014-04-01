@@ -195,10 +195,9 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem40 = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
         jMenuItem16 = new javax.swing.JMenuItem();
-        jSeparator12 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem25 = new javax.swing.JMenuItem();
         jSeparator10 = new javax.swing.JPopupMenu.Separator();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem15 = new javax.swing.JMenuItem();
@@ -735,7 +734,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem10);
 
-        jMenuItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Setting/phone.png"))); // NOI18N
+        jMenuItem19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Setting/transmit.png"))); // NOI18N
         jMenuItem19.setText("Device");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -744,24 +743,23 @@ public class MainWindowSample extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem19);
 
-        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Setting/site_backup_and_restore.png"))); // NOI18N
-        jMenuItem13.setText("Backup");
+        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Setting/folder.png"))); // NOI18N
+        jMenuItem13.setText("Folder Management");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem13ActionPerformed(evt);
             }
         });
         jMenu4.add(jMenuItem13);
+
+        jMenuItem40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Setting/computer.png"))); // NOI18N
+        jMenuItem40.setText("Workstation");
+        jMenu4.add(jMenuItem40);
         jMenu4.add(jSeparator5);
 
         jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Setting/lock.png"))); // NOI18N
         jMenuItem16.setText("Encryption");
         jMenu4.add(jMenuItem16);
-        jMenu4.add(jSeparator12);
-
-        jMenuItem25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Setting/interface_preferences.png"))); // NOI18N
-        jMenuItem25.setText("User Interface");
-        jMenu4.add(jMenuItem25);
         jMenu4.add(jSeparator10);
 
         jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Setting/flag_airfield_vehicle_safety.png"))); // NOI18N
@@ -1359,7 +1357,6 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem24;
-    private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem26;
     private javax.swing.JMenuItem jMenuItem27;
     private javax.swing.JMenuItem jMenuItem28;
@@ -1376,6 +1373,7 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem38;
     private javax.swing.JMenuItem jMenuItem39;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem40;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
@@ -1387,7 +1385,6 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
-    private javax.swing.JPopupMenu.Separator jSeparator12;
     private javax.swing.JPopupMenu.Separator jSeparator13;
     private javax.swing.JPopupMenu.Separator jSeparator14;
     private javax.swing.JPopupMenu.Separator jSeparator15;
