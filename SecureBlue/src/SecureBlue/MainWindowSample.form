@@ -221,7 +221,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem30">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/graphic_Extra/compress.png"/>
+                  <Image iconType="3" name="/SecureBlue/graphic_Extra/compress.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="File Compression"/>
               </Properties>
@@ -234,7 +234,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem28">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/graphic_Extra/document_shred.png"/>
+                  <Image iconType="3" name="/SecureBlue/graphic_Extra/document_shred.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Shredding"/>
               </Properties>
@@ -245,7 +245,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem26">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/graphic_Extra/bomb.png"/>
+                  <Image iconType="3" name="/SecureBlue/graphic_Extra/bomb.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Self Destruct"/>
               </Properties>
@@ -258,7 +258,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem27">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/graphic_Extra/system_monitor.png"/>
+                  <Image iconType="3" name="/SecureBlue/graphic_Extra/system_monitor.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Hacking Monitoring"/>
               </Properties>
@@ -271,7 +271,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem29">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/graphic_Extra/network_cloud.png"/>
+                  <Image iconType="3" name="/SecureBlue/graphic_Extra/network_cloud.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cloud Storage"/>
               </Properties>
@@ -284,7 +284,7 @@
         <Menu class="javax.swing.JMenu" name="jMenu4">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/graphic_Setting/setting_tools.png"/>
+              <Image iconType="3" name="/SecureBlue/graphic_Setting/setting_tools.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Settings"/>
           </Properties>
@@ -292,7 +292,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem9">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/graphic_Setting/cog.png"/>
+                  <Image iconType="3" name="/SecureBlue/graphic_Setting/cog.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="General"/>
               </Properties>
@@ -305,7 +305,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem10">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/graphic_Setting/user.png"/>
+                  <Image iconType="3" name="/SecureBlue/graphic_Setting/user.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Account"/>
               </Properties>
@@ -351,7 +351,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem16">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/graphic_Setting/lock.png"/>
+                  <Image iconType="3" name="/SecureBlue/graphic_Setting/lock.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Encryption"/>
               </Properties>
@@ -372,7 +372,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem15">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/graphic_Setting/compress.png"/>
+                      <Image iconType="3" name="/SecureBlue/graphic_Setting/compress.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="File Compression"/>
                   </Properties>
@@ -385,7 +385,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem12">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/graphic_Setting/document_shred.png"/>
+                      <Image iconType="3" name="/SecureBlue/graphic_Setting/document_shred.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Shredding"/>
                   </Properties>
@@ -396,7 +396,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem11">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/graphic_Setting/bomb.png"/>
+                      <Image iconType="3" name="/SecureBlue/graphic_Setting/bomb.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Self Destruct"/>
                   </Properties>
@@ -409,7 +409,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem24">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/graphic_Setting/system_monitor.png"/>
+                      <Image iconType="3" name="/SecureBlue/graphic_Setting/system_monitor.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Hacking Monitoring"/>
                   </Properties>
@@ -422,7 +422,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem23">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/graphic_Setting/network_cloud.png"/>
+                      <Image iconType="3" name="/SecureBlue/graphic_Setting/network_cloud.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Cloud Storage"/>
                   </Properties>
@@ -437,7 +437,7 @@
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/graphic_Support/support.png"/>
+              <Image iconType="3" name="/SecureBlue/graphic_Support/support.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Support"/>
           </Properties>
@@ -448,7 +448,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/graphic_Support/book_open.png"/>
+                  <Image iconType="3" name="/SecureBlue/graphic_Support/book_open.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="User Guide"/>
               </Properties>
@@ -461,7 +461,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/graphic_Support/bug_error.png"/>
+                  <Image iconType="3" name="/SecureBlue/graphic_Support/bug.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Report Bug"/>
                 <Property name="toolTipText" type="java.lang.String" value="Report a problem you have experianced "/>
@@ -491,7 +491,7 @@
               <Border info="null"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/graphic_About/comment.png"/>
+              <Image iconType="3" name="/SecureBlue/graphic_SayHello/comment.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Say Hello"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -500,7 +500,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem17">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/graphic_About/internet_explorer.png"/>
+                  <Image iconType="3" name="/SecureBlue/graphic_SayHello/internet_explorer.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="SecureBlue Webiste"/>
               </Properties>
@@ -513,7 +513,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/graphic_About/contact_email.png"/>
+                  <Image iconType="3" name="/SecureBlue/graphic_SayHello/contact_email.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Contact Us"/>
               </Properties>
@@ -524,7 +524,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/graphic_About/facebook.png"/>
+                  <Image iconType="3" name="/SecureBlue/graphic_SayHello/facebook.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Like Us"/>
                 <Property name="toolTipText" type="java.lang.String" value="Like Us On Facebook"/>
@@ -536,7 +536,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/graphic_About/twitter.png"/>
+                  <Image iconType="3" name="/SecureBlue/graphic_SayHello/twitter.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Follow Us"/>
                 <Property name="toolTipText" type="java.lang.String" value="Follow Us On Twitter"/>
@@ -611,7 +611,7 @@
               </Group>
           </Group>
           <Component id="jSeparator3" alignment="0" max="32767" attributes="0"/>
-          <Component id="jPanel8" alignment="1" max="32767" attributes="0"/>
+          <Component id="jPanel8" alignment="1" pref="1300" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -627,12 +627,12 @@
                   <Group type="102" attributes="0">
                       <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="Saple" pref="523" max="32767" attributes="0"/>
+                      <Component id="Saple" pref="521" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
               <Component id="jSeparator3" min="-2" pref="2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -879,15 +879,30 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="215" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jLabel6" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="252" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabel6">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="No Files:"/>
+          </Properties>
+        </Component>
+      </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel6">
       <Properties>
@@ -955,11 +970,8 @@
         <Component class="javax.swing.JComboBox" name="jComboBox2">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
+              <StringArray count="1">
+                <StringItem index="0" value="No Folder Setup"/>
               </StringArray>
             </Property>
           </Properties>
@@ -969,35 +981,39 @@
     <Component class="javax.swing.JSeparator" name="jSeparator3">
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel8">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[1150, 20]"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
-                  <Component id="jLabel6" min="-2" pref="129" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                  <Component id="jLabel15" min="-2" pref="175" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" pref="232" max="-2" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                  <Component id="jLabel2" min="-2" pref="400" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jLabel1" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Component id="jLabel3" min="-2" pref="380" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" pref="400" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel15" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1007,7 +1023,7 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/graphic_Statusbar/date.png"/>
+              <Image iconType="3" name="/SecureBlue/graphic_Statusbar/date.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Time Timer"/>
           </Properties>
@@ -1019,29 +1035,13 @@
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/graphic_Statusbar/stopwatch_start.png"/>
+              <Image iconType="3" name="/SecureBlue/graphic_Statusbar/stopwatch_start.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Time Elapsed: "/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Timer timee1 = new javax.swing.Timer(1000, new ActionListener() { &#xa;&#xa;            @Override&#xa;            public void actionPerformed(ActionEvent e) {&#xa;                try {&#xa;         long end = System.currentTimeMillis( );&#xa;         long diff = end - start;&#xa;         long second = (diff / 1000) % 60;&#xa;long minute = (diff / (1000 * 60)) % 60;&#xa;long hour = (diff / (1000 * 60 * 60)) % 24;&#xa;&#xa;String time = String.format(&quot;Session Time: %02d:%02d:%02d&quot;, hour, minute, second);&#xa;jLabel3.setText(time);&#xa;      } catch (Exception ex) {&#xa;         System.out.println(&quot;Got an exception!&quot;);&#xa;      }        &#xa; &#xa;            }&#xa;        });&#xa;        timee1.start();"/>
           </AuxValues>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel15">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/SecureBlue/graphic_Statusbar/computer.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Work Station: "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel6">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/SecureBlue/graphic_Statusbar/folder.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Folder: "/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>

@@ -64,18 +64,28 @@ public class MainWindowSample extends javax.swing.JFrame {
         java.util.Date now = new java.util.Date();
         String ss = DateFormat.getDateTimeInstance().format(now);
         jLabel1.setText("System Date & Time: " + ss);
-        jLabel3.setText("Session Time: 00:00:00");
+        jLabel3.setText("Session Time: 00:00:00 ");
 
-        File f1 = new File("C:\\Users\\TheThoetha\\Desktop\\C012952A FYP SecureBlue\\Test");
-        getFiles(f1);
+        File f1 = new File("C:\\Users\\TheThoetha\\Desktop\\C012952A FYP SecureBlue");
+
+        ProcessFilesThread myRunnable = new ProcessFilesThread(this, f1);
+        Thread t = new Thread(myRunnable);
+        t.start();
+
         File file;
         Boolean select = false;
         String name;
+        String fname;
         String date;
         int pos;
         String type;
         String fileSize;
         String status;
+
+        while (t.isAlive()) {
+        }
+
+        filelists = myRunnable.getResultFiles();
 
         DefaultTableModel dw = (DefaultTableModel) jTable1.getModel();
 
@@ -83,14 +93,20 @@ public class MainWindowSample extends javax.swing.JFrame {
             file = filelists.get(i);
 
             //file name
-            name = file.getName();
-
+          fname = file.getName();
             //date
             date = DateFormat.getDateTimeInstance().format(file.lastModified());
 
             //file extension
-            pos = name.lastIndexOf('.');
-            type = name.substring(pos);
+            pos = fname.lastIndexOf('.');
+            if (pos > 0) {
+                type = fname.substring(pos);
+                 name = fname.substring(0,pos);
+
+            } else {
+                type = fname;
+                name = file.getName();
+            }
 
             // size
             fileSize = getFileSize(file.length());
@@ -100,6 +116,7 @@ public class MainWindowSample extends javax.swing.JFrame {
 
             dw.addRow(new Object[]{false, " " + name, " " + date, type, " " + fileSize, status, "Open", "Delete"});
         }
+
     }
 
     public static String getFileSize(double fileLength) {
@@ -139,6 +156,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         Saple = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -149,8 +167,6 @@ public class MainWindowSample extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -420,15 +436,23 @@ public class MainWindowSample extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jLabel6.setText("No Files:");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 215, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 252, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -450,7 +474,7 @@ public class MainWindowSample extends javax.swing.JFrame {
 
         jLabel5.setText("Current Folder: ");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No Folder Setup" }));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -496,19 +520,16 @@ public class MainWindowSample extends javax.swing.JFrame {
             }
         });
 
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel8.setPreferredSize(new java.awt.Dimension(1150, 20));
+
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Statusbar/date.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Statusbar/date.png"))); // NOI18N
         jLabel1.setText("Time Timer");
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Statusbar/stopwatch_start.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Statusbar/stopwatch_start.png"))); // NOI18N
         jLabel3.setText("Time Elapsed: ");
-
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Statusbar/computer.png"))); // NOI18N
-        jLabel15.setText("Work Station: ");
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Statusbar/folder.png"))); // NOI18N
-        jLabel6.setText("Folder: ");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Statusbar/transmit.png"))); // NOI18N
         jLabel2.setText("Bluetooth Device: ");
@@ -517,28 +538,24 @@ public class MainWindowSample extends javax.swing.JFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jLabel2)
-                .addGap(135, 135, 135)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77)
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addGap(2, 2, 2)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(2, 2, 2)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel6)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addGap(2, 2, 2))
         );
 
         Timer timee = new javax.swing.Timer(1000, new ActionListener() {
@@ -707,7 +724,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Extra/flag_airfield_vehicle_safety.png"))); // NOI18N
         jMenu8.setText("Extras");
 
-        jMenuItem30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Extra/compress.png"))); // NOI18N
+        jMenuItem30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Extra/compress.png"))); // NOI18N
         jMenuItem30.setText("File Compression");
         jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -717,7 +734,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenu8.add(jMenuItem30);
         jMenu8.add(jSeparator14);
 
-        jMenuItem28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Extra/document_shred.png"))); // NOI18N
+        jMenuItem28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Extra/document_shred.png"))); // NOI18N
         jMenuItem28.setText("Shredding");
         jMenuItem28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -726,7 +743,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItem28);
 
-        jMenuItem26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Extra/bomb.png"))); // NOI18N
+        jMenuItem26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Extra/bomb.png"))); // NOI18N
         jMenuItem26.setText("Self Destruct");
         jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -736,7 +753,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenu8.add(jMenuItem26);
         jMenu8.add(jSeparator11);
 
-        jMenuItem27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Extra/system_monitor.png"))); // NOI18N
+        jMenuItem27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Extra/system_monitor.png"))); // NOI18N
         jMenuItem27.setText("Hacking Monitoring");
         jMenuItem27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -746,7 +763,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenu8.add(jMenuItem27);
         jMenu8.add(jSeparator13);
 
-        jMenuItem29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Extra/network_cloud.png"))); // NOI18N
+        jMenuItem29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Extra/network_cloud.png"))); // NOI18N
         jMenuItem29.setText("Cloud Storage");
         jMenuItem29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -757,10 +774,10 @@ public class MainWindowSample extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu8);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Setting/setting_tools.png"))); // NOI18N
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Setting/setting_tools.png"))); // NOI18N
         jMenu4.setText("Settings");
 
-        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Setting/cog.png"))); // NOI18N
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Setting/cog.png"))); // NOI18N
         jMenuItem9.setText("General");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -770,7 +787,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenu4.add(jMenuItem9);
         jMenu4.add(jSeparator4);
 
-        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Setting/user.png"))); // NOI18N
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Setting/user.png"))); // NOI18N
         jMenuItem10.setText("Account");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -807,7 +824,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenu4.add(jMenuItem40);
         jMenu4.add(jSeparator5);
 
-        jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Setting/lock.png"))); // NOI18N
+        jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Setting/lock.png"))); // NOI18N
         jMenuItem16.setText("Encryption");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -820,7 +837,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Setting/flag_airfield_vehicle_safety.png"))); // NOI18N
         jMenu7.setText("Extras");
 
-        jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Setting/compress.png"))); // NOI18N
+        jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Setting/compress.png"))); // NOI18N
         jMenuItem15.setText("File Compression");
         jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -830,7 +847,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenu7.add(jMenuItem15);
         jMenu7.add(jSeparator16);
 
-        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Setting/document_shred.png"))); // NOI18N
+        jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Setting/document_shred.png"))); // NOI18N
         jMenuItem12.setText("Shredding");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -839,7 +856,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         });
         jMenu7.add(jMenuItem12);
 
-        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Setting/bomb.png"))); // NOI18N
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Setting/bomb.png"))); // NOI18N
         jMenuItem11.setText("Self Destruct");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -849,7 +866,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenu7.add(jMenuItem11);
         jMenu7.add(jSeparator17);
 
-        jMenuItem24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Setting/system_monitor.png"))); // NOI18N
+        jMenuItem24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Setting/system_monitor.png"))); // NOI18N
         jMenuItem24.setText("Hacking Monitoring");
         jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -859,7 +876,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenu7.add(jMenuItem24);
         jMenu7.add(jSeparator15);
 
-        jMenuItem23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Setting/network_cloud.png"))); // NOI18N
+        jMenuItem23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Setting/network_cloud.png"))); // NOI18N
         jMenuItem23.setText("Cloud Storage");
         jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -872,10 +889,10 @@ public class MainWindowSample extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Support/support.png"))); // NOI18N
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Support/support.png"))); // NOI18N
         jMenu2.setText("Support");
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Support/book_open.png"))); // NOI18N
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Support/book_open.png"))); // NOI18N
         jMenuItem3.setText("User Guide");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -885,7 +902,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenu2.add(jMenuItem3);
         jMenu2.add(jSeparator2);
 
-        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Support/bug_error.png"))); // NOI18N
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Support/bug.png"))); // NOI18N
         jMenuItem5.setText("Report Bug");
         jMenuItem5.setToolTipText("Report a problem you have experianced ");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -909,11 +926,11 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenuBar1.add(Box.createHorizontalGlue());
 
         jMenu5.setBorder(null);
-        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_About/comment.png"))); // NOI18N
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_SayHello/comment.png"))); // NOI18N
         jMenu5.setText("Say Hello");
         jMenu5.setToolTipText("");
 
-        jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_About/internet_explorer.png"))); // NOI18N
+        jMenuItem17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_SayHello/internet_explorer.png"))); // NOI18N
         jMenuItem17.setText("SecureBlue Webiste");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -923,7 +940,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenu5.add(jMenuItem17);
         jMenu5.add(jSeparator6);
 
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_About/contact_email.png"))); // NOI18N
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_SayHello/contact_email.png"))); // NOI18N
         jMenuItem4.setText("Contact Us");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -932,7 +949,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem4);
 
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_About/facebook.png"))); // NOI18N
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_SayHello/facebook.png"))); // NOI18N
         jMenuItem6.setText("Like Us");
         jMenuItem6.setToolTipText("Like Us On Facebook");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -942,7 +959,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem6);
 
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_About/twitter.png"))); // NOI18N
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_SayHello/twitter.png"))); // NOI18N
         jMenuItem7.setText("Follow Us");
         jMenuItem7.setToolTipText("Follow Us On Twitter");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
@@ -980,7 +997,7 @@ public class MainWindowSample extends javax.swing.JFrame {
                     .addComponent(Saple, javax.swing.GroupLayout.DEFAULT_SIZE, 1069, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 1300, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -994,10 +1011,10 @@ public class MainWindowSample extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Saple, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)))
+                        .addComponent(Saple, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)))
                 .addGap(3, 3, 3)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
+                .addGap(0, 0, 0)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -1207,7 +1224,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         File f = null;
-        URL url = getClass().getResource("/user_Guide/SecureBlue User Guide.pdf");
+        URL url = getClass().getResource("/SecureBlue/user_Guide/SecureBlue User Guide.pdf");
         try {
             f = new File(url.toURI());
         } catch (URISyntaxException ex) {
@@ -1406,13 +1423,9 @@ public class MainWindowSample extends javax.swing.JFrame {
             } else if (file.isFile()) {
 
                 if (file.canRead()) {
-
                     filelists.add(file);
-
                 }
-
             }
-
         }
 
     }
@@ -1423,7 +1436,7 @@ public class MainWindowSample extends javax.swing.JFrame {
                 Desktop.getDesktop().open(file1);
             }
         } catch (IOException ioe) {
-            ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_Error/page_error.png"));
+            ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_Error/page_error.png"));
 
             String filePath = filelists.get(jTable1.getSelectedRow()).getAbsolutePath();
 
@@ -1491,7 +1504,6 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1547,12 +1559,8 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
@@ -1618,32 +1626,21 @@ public class MainWindowSample extends javax.swing.JFrame {
             String toolTip = null;
 
             switch (fileType.toLowerCase()) {
-                case ".txt":
-
-                    toolTip = "Text File";
+                
+                case "not supported":
+                    toolTip = "Encryption Not Supported";
                     break;
-                case ".docx":
-                    toolTip = "Microsoft Word File";
+                case "decrypted":
+                    toolTip = "File Not Encrypted";
                     break;
-                case ".pub":
-
-                    break;
-
-                case "Not Supported":
-                    toolTip = "Encryption / Decryption Not Support";
-                    break;
-                case "Decrypted":
-                    toolTip = "File Decrypted";
-                    break;
-                case "Encrypted":
+                case "encrypted":
                     toolTip = "File Encrypted";
                     break;
 
                 default:
-
+                     toolTip = fileType;
                     break;
             }
-
             return toolTip;
         }
 
@@ -1652,333 +1649,344 @@ public class MainWindowSample extends javax.swing.JFrame {
 
             switch (fileType.toLowerCase()) {
                 case ".3pg":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_3pg.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_3pg.png"));
                     break;
 
                 case ".7z":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_7z.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_7z.png"));
                     break;
                 case ".ace":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_ace.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_ace.png"));
                     break;
                 case ".ai":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_ai.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_ai.png"));
                     break;
                 case ".aif":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_aif.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_aif.png"));
                     break;
                 case "aiff":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_aiff.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_aiff.png"));
                     break;
                 case ".amr":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_amr.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_amr.png"));
                     break;
                 case ".asf":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_asf.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_asf.png"));
                     break;
                 case ".asx":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_asx.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_asx.png"));
                     break;
                 case ".bat":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_bat.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_bat.png"));
                     break;
                 case ".bin":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_bin.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_bin.png"));
                     break;
                 case ".bmp":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_bmp.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_bmp.png"));
                     break;
                 case ".bup":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_bup.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_bup.png"));
                     break;
                 case ".cab":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_cab.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_cab.png"));
                     break;
 
                 case ".cbr":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_cbr.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_cbr.png"));
                     break;
 
                 case ".cda":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_cda.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_cda.png"));
                     break;
                 case ".cdl":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_cdl.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_cdl.png"));
                     break;
                 case ".cdr":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_cdr.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_cdr.png"));
                     break;
                 case ".chm":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_chm.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_chm.png"));
                     break;
                 case "dat":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_dat.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_dat.png"));
                     break;
                 case ".divx":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_divx.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_divx.png"));
                     break;
                 case ".dll":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_dll.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_dll.png"));
                     break;
                 case ".dmg":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_dmg.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_dmg.png"));
                     break;
-                // nice change
                 case ".docx":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_doc.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_doc.png"));
                     break;
                 case ".dss":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_dss.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_dss.png"));
                     break;
                 case ".dvf":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_dvf.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_dvf.png"));
                     break;
                 case ".dwg":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_dwg.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_dwg.png"));
                     break;
                 case ".eml":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_eml.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_eml.png"));
                     break;
                 case ".eps":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_eps.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_eps.png"));
                     break;
                 case ".exe":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_exe.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_exe.png"));
                     break;
                 case ".fla":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_fla.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_fla.png"));
                     break;
                 case ".flv":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_flv.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_flv.png"));
                     break;
                 case ".gif":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_gif.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_gif.png"));
                     break;
                 case ".gz":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_gz.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_gz.png"));
                     break;
                 case ".hqx":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_hqx.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_hqx.png"));
                     break;
                 case ".htm":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_htm.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_htm.png"));
                     break;
                 case ".html":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_html.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_html.png"));
+                    break;
+                case ".xml":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_html.png"));
                     break;
                 case ".ifo":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_ifo.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_ifo.png"));
                     break;
 
                 case ".indd":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_indd.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_indd.png"));
                     break;
 
                 case ".iso":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_iso.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_iso.png"));
                     break;
 
                 case ".jar":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_jar.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_jar.png"));
                     break;
 
                 case ".jpeg":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_jpeg.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_jpeg.png"));
                     break;
 
                 case ".jpg":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_jpg.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_jpg.png"));
                     break;
 
                 case ".lnk":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_lnk.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_lnk.png"));
                     break;
                 case ".log":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_log.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_log.png"));
                     break;
                 case ".m4a":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_m4a.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_m4a.png"));
                     break;
                 case ".m4b":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_m4b.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_m4b.png"));
                     break;
                 case "m4p":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_m4p.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_m4p.png"));
                     break;
                 case ".m4v":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_m4v.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_m4v.png"));
                     break;
                 case ".mcd":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mcd.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_mcd.png"));
+                    break;
+                case ".mpp":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_mpp.png"));
                     break;
                 case ".accdb":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mdb.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_mdb.png"));
                     break;
                 case ".mid":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mid.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_mid.png"));
                     break;
                 case ".mov":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mov.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_mov.png"));
                     break;
                 case ".mp3":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mp2.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_mp2.png"));
                     break;
                 case ".mp2":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mp2.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_mp2.png"));
                     break;
                 case ".mp4":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mp4.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_mp4.png"));
                     break;
                 case ".mpeg":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mpeg.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_mpeg.png"));
                     break;
 
                 case ".mpg":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mpp.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_mpg.png"));
                     break;
 
                 case ".msi":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_msi.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_msi.png"));
                     break;
-
-                case ".mpp":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mpp.png"));
-                    break;
+//
 
                 case ".mswmm":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mswmm.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_mswmm.png"));
                     break;
                 case ".ogg":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_ogg.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_ogg.png"));
                     break;
                 case ".pdf":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_pdf.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_pdf.png"));
                     break;
                 case ".png":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_png.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_png.png"));
                     break;
-                //change
                 case ".pptx":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_pps.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_pps.png"));
                     break;
                 case ".ps":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_ps.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_ps.png"));
                     break;
                 case ".psd":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_psd.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_psd.png"));
                     break;
-                // nice change
                 case ".pst":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_pst.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_pst.png"));
                     break;
                 case ".ptb":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_ptb.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_ptb.png"));
                     break;
                 case ".pub":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_pub.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_pub.png"));
                     break;
                 case ".qbb":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_qbb.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_qbb.png"));
                     break;
                 case ".qbw":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_qbw.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_qbw.png"));
                     break;
                 case ".qxd":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_qxd.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_qxd.png"));
                     break;
                 case ".ram":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_ram.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_ram.png"));
                     break;
                 case ".rar":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_rar.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_rar.png"));
                     break;
                 case ".rm":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_rm.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_rm.png"));
                     break;
                 case ".rmvb":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_rmvb.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_rmvb.png"));
                     break;
                 case ".rtf":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_rtf.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_rtf.png"));
                     break;
                 case ".sea":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_sea.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_sea.png"));
                     break;
                 case ".ses":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_ses.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_ses.png"));
                     break;
                 case ".sit":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_sit.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_sit.png"));
                     break;
                 case ".sitx":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_sitx.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_sitx.png"));
                     break;
                 case ".ss":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_ss.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_ss.png"));
                     break;
                 case ".swf":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_swf.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_swf.png"));
                     break;
                 case ".tgz":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_tgz.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_tgz.png"));
                     break;
                 case ".thm":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_thm.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_thm.png"));
                     break;
                 case ".tif":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_tif.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_tif.png"));
                     break;
 
                 case ".tmp":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_tmp.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_tmp.png"));
                     break;
 
                 case ".torrent":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_torrent.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_torrent.png"));
                     break;
                 case ".ttf":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_ttf.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_ttf.png"));
                     break;
                 case ".txt":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_txt.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_txt.png"));
+                    break;
+                case ".ini":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_txt.png"));
+                    break;
+                case ".nfo":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_txt.png"));
+                    break;
+                case ".jnt":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_txt.png"));
                     break;
                 case ".vcd":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_vcd.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_vcd.png"));
                     break;
                 case "vob":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_vob.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_vob.png"));
                     break;
                 case ".wav":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_wav.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_wav.png"));
                     break;
                 case ".wma":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_wma.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_wma.png"));
                     break;
-                //change
                 case ".wmv":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_wmv.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_wmv.png"));
                     break;
                 case ".wps":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_wps.wps"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_wps.wps"));
                     break;
                 case ".xlsx":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_xls.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_xls.png"));
                     break;
                 case ".xpi":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_xpi.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_xpi.png"));
                     break;
                 case ".zip":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_zip.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_zip.png"));
+                    break;
+                case ".m3u":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_wmv.png"));
                     break;
 
                 case "not supported":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_Status/lock_break.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_Status/lock_break.png"));
                     break;
                 case "decrypted":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_Status/lock_open.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_Status/lock_open.png"));
                     break;
                 case "encrypted":
-                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_Status/lock.png"));
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_Status/lock.png"));
                     break;
 
                 default:
@@ -2017,13 +2025,9 @@ public class MainWindowSample extends javax.swing.JFrame {
             }
             setText((value == null) ? "" : value.toString());
             if (value == "Delete") {
-
                 setIcon(deleteButtonIcon);
-                setToolTipText("Delete File");
             } else if (value == "Open") {
-
                 setIcon(openButtonIcon);
-                setToolTipText("Open File");
             }
             return this;
         }
@@ -2088,7 +2092,7 @@ public class MainWindowSample extends javax.swing.JFrame {
                     int test = jTable1.getSelectedRow();
 
                     if (filelists.get(jTable1.getSelectedRow()).delete()) {
-                        ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_Message/page_go.png"));
+                        ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_Message/page_go.png"));
                         String filePath = filelists.get(jTable1.getSelectedRow()).getAbsolutePath();
                         JOptionPane.showMessageDialog(button.getRootPane().getRootPane(),
                                 "File Located: " + filePath + " Has Been Deleted",
@@ -2102,7 +2106,7 @@ public class MainWindowSample extends javax.swing.JFrame {
 
                         // remove from list/table/delete
                     } else {
-                        ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_Error/page_error.png"));
+                        ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_Error/page_error.png"));
 
                         String filePath = filelists.get(jTable1.getSelectedRow()).getAbsolutePath();
 
@@ -2122,7 +2126,7 @@ public class MainWindowSample extends javax.swing.JFrame {
                             Desktop.getDesktop().open(filelists.get(jTable1.getSelectedRow()));
                         }
                     } catch (IOException ioe) {
-                        ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_Error/page_error.png"));
+                        ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_Error/page_error.png"));
 
                         String filePath = filelists.get(jTable1.getSelectedRow()).getAbsolutePath();
 
