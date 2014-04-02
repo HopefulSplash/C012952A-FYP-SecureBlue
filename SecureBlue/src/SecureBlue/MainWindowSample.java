@@ -3,7 +3,6 @@ package SecureBlue;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Desktop;
-import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,6 +14,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +24,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
@@ -35,6 +36,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -94,9 +96,9 @@ public class MainWindowSample extends javax.swing.JFrame {
             fileSize = getFileSize(file.length());
 
             //status 
-            status = "Unprotected";
+            status = "Decrypted";
 
-            dw.addRow(new Object[]{false, name, date, type, fileSize, status, "Open", "Delete"});
+            dw.addRow(new Object[]{false, " " + name, " " + date, type, " " + fileSize, status, "Open", "Delete"});
         }
     }
 
@@ -109,9 +111,11 @@ public class MainWindowSample extends javax.swing.JFrame {
         char pre = "KMGTPE".charAt(exp - 1);
 
         String s = String.format(" %sB", pre);
+
+        DecimalFormat df = new DecimalFormat("#.##");
         double we = fileLength / Math.pow(unitSize, exp);
 
-        String ss = we + s;
+        String ss = df.format(we) + s;
 
         return ss;
     }
@@ -141,13 +145,13 @@ public class MainWindowSample extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
-        jToolBar1 = new javax.swing.JToolBar();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem38 = new javax.swing.JMenuItem();
@@ -221,6 +225,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SecureBlue Encryption Software");
         setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(1300, 600));
         setMinimumSize(new java.awt.Dimension(1300, 600));
         setName("MainWindowFrame"); // NOI18N
         setResizable(false);
@@ -358,11 +363,26 @@ public class MainWindowSample extends javax.swing.JFrame {
         jTable1.getColumnModel().getColumn(3).setCellRenderer(new ImageRenderer());
         jTable1.getColumnModel().getColumn(5).setCellRenderer(new ImageRenderer());
 
+        jTable1.getColumnModel().getColumn(0).setMinWidth(40);
         jTable1.getColumnModel().getColumn(0).setMaxWidth(40);
-        jTable1.getColumnModel().getColumn(1).setMinWidth(250);
-        jTable1.getColumnModel().getColumn(1).setMaxWidth(500);
-        jTable1.getColumnModel().getColumn(2).setMinWidth(80);
-        jTable1.getColumnModel().getColumn(3).setMinWidth(30);
+
+        jTable1.getColumnModel().getColumn(2).setMinWidth(120);
+        jTable1.getColumnModel().getColumn(2).setMaxWidth(120);
+
+        jTable1.getColumnModel().getColumn(3).setMinWidth(55);
+        jTable1.getColumnModel().getColumn(3).setMaxWidth(55);
+
+        jTable1.getColumnModel().getColumn(4).setMinWidth(60);
+        jTable1.getColumnModel().getColumn(4).setMaxWidth(60);
+
+        jTable1.getColumnModel().getColumn(5).setMaxWidth(60);
+        jTable1.getColumnModel().getColumn(5).setMinWidth(60);
+
+        jTable1.getColumnModel().getColumn(6).setMaxWidth(85);
+        jTable1.getColumnModel().getColumn(6).setMinWidth(85);
+
+        jTable1.getColumnModel().getColumn(7).setMaxWidth(85);
+        jTable1.getColumnModel().getColumn(7).setMinWidth(85);
 
         jTable1.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent me) {
@@ -376,10 +396,14 @@ public class MainWindowSample extends javax.swing.JFrame {
             }
         });
 
+        TableCellRenderer rendererFromHeader = jTable1.getTableHeader().getDefaultRenderer();
+        JLabel headerLabel = (JLabel) rendererFromHeader;
+        headerLabel.setHorizontalAlignment(JLabel.CENTER);
+
         for (int a = 0; a < jTable1.getColumnCount(); a++){
-            if (a != 1){
-                jTable1.getColumnModel().getColumn(a).setResizable(false);
-            }
+
+            jTable1.getColumnModel().getColumn(a).setResizable(false);
+
         }
         jTable1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -404,7 +428,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 251, Short.MAX_VALUE)
+            .addGap(0, 252, Short.MAX_VALUE)
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -472,26 +496,63 @@ public class MainWindowSample extends javax.swing.JFrame {
             }
         });
 
-        jToolBar1.setBackground(new java.awt.Color(255, 255, 255));
-        jToolBar1.setFloatable(false);
-        jToolBar1.setRollover(true);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Statusbar/transmit.png"))); // NOI18N
-        jLabel2.setText("Bluetooth Device: ");
-        jToolBar1.add(jLabel2);
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Statusbar/folder.png"))); // NOI18N
-        jLabel6.setText("Folder: ");
-        jToolBar1.add(jLabel6);
-
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Statusbar/computer.png"))); // NOI18N
-        jLabel15.setText("Work Station: ");
-        jToolBar1.add(jLabel15);
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Statusbar/date.png"))); // NOI18N
+        jLabel1.setText("Time Timer");
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Statusbar/stopwatch_start.png"))); // NOI18N
         jLabel3.setText("Time Elapsed: ");
-        jToolBar1.add(jLabel3);
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Statusbar/computer.png"))); // NOI18N
+        jLabel15.setText("Work Station: ");
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Statusbar/folder.png"))); // NOI18N
+        jLabel6.setText("Folder: ");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Statusbar/transmit.png"))); // NOI18N
+        jLabel2.setText("Bluetooth Device: ");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jLabel2)
+                .addGap(135, 135, 135)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)))
+        );
+
+        Timer timee = new javax.swing.Timer(1000, new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                java.util.Date now = new java.util.Date();
+                String ss = DateFormat.getDateTimeInstance().format(now);
+                jLabel1.setText("System Date & Time: " + ss);
+                jLabel1.setToolTipText("System Date & Time: " + ss);
+
+            }
+        });
+        timee.start();
         Timer timee1 = new javax.swing.Timer(1000, new ActionListener() {
 
             @Override
@@ -512,23 +573,6 @@ public class MainWindowSample extends javax.swing.JFrame {
             }
         });
         timee1.start();
-
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/graphic_Statusbar/date.png"))); // NOI18N
-        jLabel1.setText("Time Timer");
-        jToolBar1.add(jLabel1);
-        Timer timee = new javax.swing.Timer(1000, new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                java.util.Date now = new java.util.Date();
-                String ss = DateFormat.getDateTimeInstance().format(now);
-                jLabel1.setText("System Date & Time: " + ss);
-                jLabel1.setToolTipText("System Date & Time: " + ss);
-
-            }
-        });
-        timee.start();
 
         jMenuBar1.setBorder(null);
 
@@ -926,7 +970,6 @@ public class MainWindowSample extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -937,6 +980,7 @@ public class MainWindowSample extends javax.swing.JFrame {
                     .addComponent(Saple, javax.swing.GroupLayout.DEFAULT_SIZE, 1069, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -950,11 +994,11 @@ public class MainWindowSample extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Saple, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)))
+                        .addComponent(Saple, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)))
                 .addGap(3, 3, 3)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         getContentPane().setBackground(Color.WHITE);
@@ -1009,8 +1053,8 @@ public class MainWindowSample extends javax.swing.JFrame {
                     options[0]); //default button title
 
             if (n == 0) {
+// safe delete method
 
-                // safe delete method
             } else if (n == 1) {
 
                 jTextField1.setText("");
@@ -1024,6 +1068,8 @@ public class MainWindowSample extends javax.swing.JFrame {
                     }
 
                 }
+            } else if (n == 2) {
+                // safe delete method
             }
         } else {
 
@@ -1061,7 +1107,7 @@ public class MainWindowSample extends javax.swing.JFrame {
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // TODO add your handling code here:
         Settings sw = new Settings(this, true);
-                sw.getjTabbedPane1().setSelectedIndex(3);
+        sw.getjTabbedPane1().setSelectedIndex(3);
 
         sw.setVisible(true);
 
@@ -1093,7 +1139,7 @@ public class MainWindowSample extends javax.swing.JFrame {
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         // TODO add your handling code here:
         Settings sw = new Settings(this, true);
-                sw.getjTabbedPane1().setSelectedIndex(6);
+        sw.getjTabbedPane1().setSelectedIndex(6);
 
         sw.setVisible(true);
 
@@ -1101,7 +1147,7 @@ public class MainWindowSample extends javax.swing.JFrame {
 
     private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
         // TODO add your handling code here:
-        COMPRESS fcw = new COMPRESS (this, true);
+        COMPRESS fcw = new COMPRESS(this, true);
         fcw.setVisible(true);
     }//GEN-LAST:event_jMenuItem30ActionPerformed
 
@@ -1196,14 +1242,14 @@ public class MainWindowSample extends javax.swing.JFrame {
         sw.getjTabbedPane1().setSelectedIndex(1);
 
         sw.setVisible(true);
-       
+
 
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         // TODO add your handling code here:
         Settings sw = new Settings(this, true);
-                sw.getjTabbedPane1().setSelectedIndex(2);
+        sw.getjTabbedPane1().setSelectedIndex(2);
 
         sw.setVisible(true);
 
@@ -1235,7 +1281,7 @@ public class MainWindowSample extends javax.swing.JFrame {
     private void jMenuItem40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem40ActionPerformed
         // TODO add your handling code here:
         Settings sw = new Settings(this, true);
-               sw.getjTabbedPane1().setSelectedIndex(4);
+        sw.getjTabbedPane1().setSelectedIndex(4);
 
         sw.setVisible(true);
 
@@ -1244,7 +1290,7 @@ public class MainWindowSample extends javax.swing.JFrame {
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         // TODO add your handling code here:
         Settings sw = new Settings(this, true);
-                sw.getjTabbedPane1().setSelectedIndex(5);
+        sw.getjTabbedPane1().setSelectedIndex(5);
 
         sw.setVisible(true);
 
@@ -1256,14 +1302,14 @@ public class MainWindowSample extends javax.swing.JFrame {
         sw.getjTabbedPane1().setSelectedIndex(7);
 
         sw.setVisible(true);
-      
+
 
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // TODO add your handling code here:
         Settings sw = new Settings(this, true);
-               sw.getjTabbedPane1().setSelectedIndex(8);
+        sw.getjTabbedPane1().setSelectedIndex(8);
 
         sw.setVisible(true);
 
@@ -1272,7 +1318,7 @@ public class MainWindowSample extends javax.swing.JFrame {
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
         // TODO add your handling code here:
         Settings sw = new Settings(this, true);
-                sw.getjTabbedPane1().setSelectedIndex(9);
+        sw.getjTabbedPane1().setSelectedIndex(9);
 
         sw.setVisible(true);
 
@@ -1281,7 +1327,7 @@ public class MainWindowSample extends javax.swing.JFrame {
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
         // TODO add your handling code here:
         Settings sw = new Settings(this, true);
-               sw.getjTabbedPane1().setSelectedIndex(10);
+        sw.getjTabbedPane1().setSelectedIndex(10);
 
         sw.setVisible(true);
 
@@ -1289,26 +1335,26 @@ public class MainWindowSample extends javax.swing.JFrame {
 
     private void jMenuItem27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem27ActionPerformed
         // TODO add your handling code here:
-        
+
         HACK hmw = new HACK(this, true);
         hmw.setVisible(true);
     }//GEN-LAST:event_jMenuItem27ActionPerformed
 
     private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
         // TODO add your handling code here:
-        CLOUD cw = new CLOUD (this,true);
+        CLOUD cw = new CLOUD(this, true);
         cw.setVisible(true);
     }//GEN-LAST:event_jMenuItem29ActionPerformed
 
     private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
         // TODO add your handling code here:
-        SHREDD fsw = new SHREDD (this, true);
+        SHREDD fsw = new SHREDD(this, true);
         fsw.setVisible(true);
     }//GEN-LAST:event_jMenuItem28ActionPerformed
 
     private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
         // TODO add your handling code here:
-        SELF dsw = new SELF (this, true);
+        SELF dsw = new SELF(this, true);
         dsw.setVisible(true);
     }//GEN-LAST:event_jMenuItem26ActionPerformed
 
@@ -1317,10 +1363,8 @@ public class MainWindowSample extends javax.swing.JFrame {
         String expr = jTextField1.getText();
         //stop feilds from filtering
         // 
-        sorter.setRowFilter(RowFilter.regexFilter(expr));
+        sorter.setRowFilter(RowFilter.regexFilter("(?i)" + expr));
         sorter.setSortKeys(null);
-
-        System.out.println("HELLO");
 
     }
 
@@ -1503,8 +1547,13 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
     private javax.swing.JPopupMenu.Separator jSeparator11;
@@ -1528,7 +1577,6 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator9;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 
     class ImageRenderer extends DefaultTableCellRenderer {
@@ -1536,6 +1584,8 @@ public class MainWindowSample extends javax.swing.JFrame {
         ImageIcon icon;
 
         public ImageRenderer() {
+            setVerticalAlignment(CENTER);
+            setHorizontalAlignment(CENTER);
             setOpaque(true);
         }
 
@@ -1547,10 +1597,6 @@ public class MainWindowSample extends javax.swing.JFrame {
 
             icon = switchIcon(fileType);
 
-            Image img = icon.getImage();
-            Image newimg = img.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
-            ImageIcon newIcon = new ImageIcon(newimg);
-
             if (isSelected) {
                 setForeground(table.getSelectionForeground());
                 setBackground(table.getSelectionBackground());
@@ -1559,72 +1605,425 @@ public class MainWindowSample extends javax.swing.JFrame {
                 setBackground(UIManager.getColor(Color.WHITE));
             }
 
-            setIcon(newIcon);
+            String s = switchToolTip(fileType);
+            setToolTipText(s);
+            setIcon(icon);
             setHorizontalAlignment(SwingConstants.CENTER);
             setVerticalAlignment(SwingConstants.CENTER);
 
             return this;
         }
 
-        private ImageIcon switchIcon(String fileType) {
-            String iconPath = null;
+        private String switchToolTip(String fileType) {
+            String toolTip = null;
 
-            switch (fileType) {
+            switch (fileType.toLowerCase()) {
                 case ".txt":
-                    iconPath = "/graphic_Table/graphic_File/file_extension_txt.png";
+
+                    toolTip = "Text File";
                     break;
                 case ".docx":
-                    iconPath = "/graphic_Table/graphic_File/file_extension_doc.png";
+                    toolTip = "Microsoft Word File";
                     break;
                 case ".pub":
-                    iconPath = "/graphic_Table/graphic_File/file_extension_pub.png";
+
                     break;
 
-                case "Protected":
-                    iconPath = "/graphic_Table/graphic_Status/file_extension_pub.png";
+                case "Not Supported":
+                    toolTip = "Encryption / Decryption Not Support";
                     break;
-                case "Unprotected":
-                    iconPath = "/graphic_Table/graphic_Status/lock_open.png";
+                case "Decrypted":
+                    toolTip = "File Decrypted";
                     break;
-                case "Not Support":
-                    iconPath = "/graphic_Table/graphic_Status/shield_grey.png";
+                case "Encrypted":
+                    toolTip = "File Encrypted";
                     break;
 
                 default:
-                    iconPath = "/graphic_Table/graphic_File/file_extension_plan.png";
+
                     break;
             }
 
-            ImageIcon OUTPUT = new ImageIcon(getClass().getResource(iconPath));
+            return toolTip;
+        }
 
-            return OUTPUT;
+        private ImageIcon switchIcon(String fileType) {
+            ImageIcon icon;
+
+            switch (fileType.toLowerCase()) {
+                case ".3pg":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_3pg.png"));
+                    break;
+
+                case ".7z":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_7z.png"));
+                    break;
+                case ".ace":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_ace.png"));
+                    break;
+                case ".ai":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_ai.png"));
+                    break;
+                case ".aif":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_aif.png"));
+                    break;
+                case "aiff":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_aiff.png"));
+                    break;
+                case ".amr":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_amr.png"));
+                    break;
+                case ".asf":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_asf.png"));
+                    break;
+                case ".asx":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_asx.png"));
+                    break;
+                case ".bat":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_bat.png"));
+                    break;
+                case ".bin":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_bin.png"));
+                    break;
+                case ".bmp":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_bmp.png"));
+                    break;
+                case ".bup":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_bup.png"));
+                    break;
+                case ".cab":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_cab.png"));
+                    break;
+
+                case ".cbr":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_cbr.png"));
+                    break;
+
+                case ".cda":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_cda.png"));
+                    break;
+                case ".cdl":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_cdl.png"));
+                    break;
+                case ".cdr":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_cdr.png"));
+                    break;
+                case ".chm":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_chm.png"));
+                    break;
+                case "dat":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_dat.png"));
+                    break;
+                case ".divx":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_divx.png"));
+                    break;
+                case ".dll":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_dll.png"));
+                    break;
+                case ".dmg":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_dmg.png"));
+                    break;
+                // nice change
+                case ".docx":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_doc.png"));
+                    break;
+                case ".dss":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_dss.png"));
+                    break;
+                case ".dvf":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_dvf.png"));
+                    break;
+                case ".dwg":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_dwg.png"));
+                    break;
+                case ".eml":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_eml.png"));
+                    break;
+                case ".eps":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_eps.png"));
+                    break;
+                case ".exe":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_exe.png"));
+                    break;
+                case ".fla":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_fla.png"));
+                    break;
+                case ".flv":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_flv.png"));
+                    break;
+                case ".gif":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_gif.png"));
+                    break;
+                case ".gz":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_gz.png"));
+                    break;
+                case ".hqx":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_hqx.png"));
+                    break;
+                case ".htm":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_htm.png"));
+                    break;
+                case ".html":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_html.png"));
+                    break;
+                case ".ifo":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_ifo.png"));
+                    break;
+
+                case ".indd":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_indd.png"));
+                    break;
+
+                case ".iso":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_iso.png"));
+                    break;
+
+                case ".jar":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_jar.png"));
+                    break;
+
+                case ".jpeg":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_jpeg.png"));
+                    break;
+
+                case ".jpg":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_jpg.png"));
+                    break;
+
+                case ".lnk":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_lnk.png"));
+                    break;
+                case ".log":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_log.png"));
+                    break;
+                case ".m4a":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_m4a.png"));
+                    break;
+                case ".m4b":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_m4b.png"));
+                    break;
+                case "m4p":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_m4p.png"));
+                    break;
+                case ".m4v":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_m4v.png"));
+                    break;
+                case ".mcd":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mcd.png"));
+                    break;
+                case ".accdb":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mdb.png"));
+                    break;
+                case ".mid":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mid.png"));
+                    break;
+                case ".mov":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mov.png"));
+                    break;
+                case ".mp3":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mp2.png"));
+                    break;
+                case ".mp2":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mp2.png"));
+                    break;
+                case ".mp4":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mp4.png"));
+                    break;
+                case ".mpeg":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mpeg.png"));
+                    break;
+
+                case ".mpg":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mpp.png"));
+                    break;
+
+                case ".msi":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_msi.png"));
+                    break;
+
+                case ".mpp":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mpp.png"));
+                    break;
+
+                case ".mswmm":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_mswmm.png"));
+                    break;
+                case ".ogg":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_ogg.png"));
+                    break;
+                case ".pdf":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_pdf.png"));
+                    break;
+                case ".png":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_png.png"));
+                    break;
+                //change
+                case ".pptx":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_pps.png"));
+                    break;
+                case ".ps":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_ps.png"));
+                    break;
+                case ".psd":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_psd.png"));
+                    break;
+                // nice change
+                case ".pst":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_pst.png"));
+                    break;
+                case ".ptb":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_ptb.png"));
+                    break;
+                case ".pub":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_pub.png"));
+                    break;
+                case ".qbb":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_qbb.png"));
+                    break;
+                case ".qbw":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_qbw.png"));
+                    break;
+                case ".qxd":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_qxd.png"));
+                    break;
+                case ".ram":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_ram.png"));
+                    break;
+                case ".rar":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_rar.png"));
+                    break;
+                case ".rm":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_rm.png"));
+                    break;
+                case ".rmvb":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_rmvb.png"));
+                    break;
+                case ".rtf":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_rtf.png"));
+                    break;
+                case ".sea":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_sea.png"));
+                    break;
+                case ".ses":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_ses.png"));
+                    break;
+                case ".sit":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_sit.png"));
+                    break;
+                case ".sitx":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_sitx.png"));
+                    break;
+                case ".ss":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_ss.png"));
+                    break;
+                case ".swf":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_swf.png"));
+                    break;
+                case ".tgz":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_tgz.png"));
+                    break;
+                case ".thm":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_thm.png"));
+                    break;
+                case ".tif":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_tif.png"));
+                    break;
+
+                case ".tmp":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_tmp.png"));
+                    break;
+
+                case ".torrent":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_torrent.png"));
+                    break;
+                case ".ttf":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_ttf.png"));
+                    break;
+                case ".txt":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_txt.png"));
+                    break;
+                case ".vcd":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_vcd.png"));
+                    break;
+                case "vob":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_vob.png"));
+                    break;
+                case ".wav":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_wav.png"));
+                    break;
+                case ".wma":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_wma.png"));
+                    break;
+                //change
+                case ".wmv":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_wmv.png"));
+                    break;
+                case ".wps":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_wps.wps"));
+                    break;
+                case ".xlsx":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_xls.png"));
+                    break;
+                case ".xpi":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_xpi.png"));
+                    break;
+                case ".zip":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_File/file_extension_zip.png"));
+                    break;
+
+                case "not supported":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_Status/lock_break.png"));
+                    break;
+                case "decrypted":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_Status/lock_open.png"));
+                    break;
+                case "encrypted":
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_Status/lock.png"));
+                    break;
+
+                default:
+                    icon = new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_File/file_extension_blank.png"));
+                    break;
+            }
+
+            return icon;
         }
 
     }
 
     class ButtonRenderer extends JButton implements TableCellRenderer {
 
-            ImageIcon OUTPUT = new ImageIcon(getClass().getResource("/graphic_Table/graphic_Buttons/bin_recycle.png"));
-        
+        ImageIcon deleteButtonIcon = new ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_Buttons/bin_recycle.png"));
+        ImageIcon openButtonIcon = new ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_Buttons/page_white_go.png"));
+
         public ButtonRenderer() {
+
+            setVerticalAlignment(CENTER);
+            setHorizontalAlignment(CENTER);
             setOpaque(true);
         }
 
         public Component getTableCellRendererComponent(JTable table, Object value,
                 boolean isSelected, boolean hasFocus, int row, int column) {
-            
-            
+
             if (isSelected) {
+                setFocusPainted(false);
                 setForeground(table.getSelectionForeground());
                 setBackground(table.getSelectionBackground());
             } else {
+                setFocusPainted(false);
                 setForeground(table.getForeground());
                 setBackground(UIManager.getColor("Button.background"));
             }
             setText((value == null) ? "" : value.toString());
-            if (value == "Delete")
-            {   
-                setIcon(OUTPUT);
+            if (value == "Delete") {
+
+                setIcon(deleteButtonIcon);
+                setToolTipText("Delete File");
+            } else if (value == "Open") {
+
+                setIcon(openButtonIcon);
+                setToolTipText("Open File");
             }
             return this;
         }
@@ -1638,6 +2037,10 @@ public class MainWindowSample extends javax.swing.JFrame {
         protected JButton button;
 
         private String label;
+
+        ImageIcon deleteButtonIcon = new ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_Buttons/bin_recycle.png"));
+
+        ImageIcon openButtonIcon = new ImageIcon(getClass().getResource("/SecureBlue/graphic_Table/graphic_Buttons/page_white_go.png"));
 
         private boolean isPushed;
 
@@ -1654,19 +2057,24 @@ public class MainWindowSample extends javax.swing.JFrame {
 
         public Component getTableCellEditorComponent(JTable table, Object value,
                 boolean isSelected, int row, int column) {
-        ;
-            
-            
-            
+            ;
+
             if (isSelected) {
+                button.setFocusPainted(false);
                 button.setForeground(table.getSelectionForeground());
                 button.setBackground(table.getSelectionBackground());
             } else {
+                button.setFocusPainted(false);
                 button.setForeground(table.getForeground());
                 button.setBackground(table.getBackground());
             }
             label = (value == null) ? "" : value.toString();
             button.setText(label);
+            if (value == "Delete") {
+                button.setIcon(deleteButtonIcon);
+            } else if (value == "Open") {
+                button.setIcon(openButtonIcon);
+            }
             isPushed = true;
             return button;
         }
@@ -1677,23 +2085,21 @@ public class MainWindowSample extends javax.swing.JFrame {
                 // 
                 if (button.getText().equalsIgnoreCase("Delete")) {
 
-                    
+                    int test = jTable1.getSelectedRow();
+
                     if (filelists.get(jTable1.getSelectedRow()).delete()) {
-
-                   
-                         
                         ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_Message/page_go.png"));
-
                         String filePath = filelists.get(jTable1.getSelectedRow()).getAbsolutePath();
-                        
-
                         JOptionPane.showMessageDialog(button.getRootPane().getRootPane(),
                                 "File Located: " + filePath + " Has Been Deleted",
                                 "File Delete Successful",
                                 JOptionPane.INFORMATION_MESSAGE,
                                 icon);
-                              ((DefaultTableModel) jTable1.getModel()).removeRow(jTable1.getSelectedRow());
-                        
+
+                        RemoveRowThread myRunnable = new RemoveRowThread(test, filePath, jTable1);
+                        Thread t = new Thread(myRunnable);
+                        t.start();
+
                         // remove from list/table/delete
                     } else {
                         ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/graphic_Table/graphic_Error/page_error.png"));
