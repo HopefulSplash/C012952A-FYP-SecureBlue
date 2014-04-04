@@ -56,6 +56,9 @@ public class MainWindowSample extends javax.swing.JFrame {
      */
     public MainWindowSample() {
         initComponents();
+        URL iconURL = getClass().getResource("/SecureBlue/graphic_Logos/blue-security-icone-4296-128.png");
+        ImageIcon icon = new ImageIcon(iconURL);
+        this.setIconImage(icon.getImage());
 
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(Color.WHITE);
@@ -66,7 +69,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         jLabel1.setText("System Date & Time: " + ss);
         jLabel3.setText("Session Time: 00:00:00 ");
 
-        File f1 = new File("C:\\Users\\TheThoetha\\Desktop\\C012952A FYP SecureBlue");
+        File f1 = new File("C:\\Users\\TheThoetha\\Desktop\\C012952A FYP SecureBlue\\Test");
 
         ProcessFilesThread myRunnable = new ProcessFilesThread(this, f1);
         Thread t = new Thread(myRunnable);
@@ -93,7 +96,7 @@ public class MainWindowSample extends javax.swing.JFrame {
             file = filelists.get(i);
 
             //file name
-          fname = file.getName();
+            fname = file.getName();
             //date
             date = DateFormat.getDateTimeInstance().format(file.lastModified());
 
@@ -101,7 +104,7 @@ public class MainWindowSample extends javax.swing.JFrame {
             pos = fname.lastIndexOf('.');
             if (pos > 0) {
                 type = fname.substring(pos);
-                 name = fname.substring(0,pos);
+                name = fname.substring(0, pos);
 
             } else {
                 type = fname;
@@ -117,6 +120,11 @@ public class MainWindowSample extends javax.swing.JFrame {
             dw.addRow(new Object[]{false, " " + name, " " + date, type, " " + fileSize, status, "Open", "Delete"});
         }
 
+        setupStats();
+    }
+
+    public static ArrayList<File> getFilelists() {
+        return filelists;
     }
 
     public static String getFileSize(double fileLength) {
@@ -135,6 +143,15 @@ public class MainWindowSample extends javax.swing.JFrame {
         String ss = df.format(we) + s;
 
         return ss;
+    }
+
+    void setupStats() {
+
+        jTextArea1.append("Encrypted Files: \t");
+        jTextArea1.append("\nDecrypted Files: \t");
+        jTextArea1.append("\nUnsupported Files: ");
+        int totalFiles = filelists.size();
+        jTextArea1.append("\nFolder's Total Files: " + totalFiles);
     }
 
     /**
@@ -156,7 +173,11 @@ public class MainWindowSample extends javax.swing.JFrame {
         Saple = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -188,29 +209,12 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenuItem32 = new javax.swing.JMenuItem();
         jSeparator18 = new javax.swing.JPopupMenu.Separator();
         jMenuItem31 = new javax.swing.JMenuItem();
-        jMenu9 = new javax.swing.JMenu();
-        jMenuItem35 = new javax.swing.JMenuItem();
-        jSeparator22 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem37 = new javax.swing.JMenuItem();
-        jMenuItem36 = new javax.swing.JMenuItem();
-        jSeparator20 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem34 = new javax.swing.JMenuItem();
-        jMenu8 = new javax.swing.JMenu();
-        jMenuItem30 = new javax.swing.JMenuItem();
-        jSeparator14 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem28 = new javax.swing.JMenuItem();
-        jMenuItem26 = new javax.swing.JMenuItem();
-        jSeparator11 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem27 = new javax.swing.JMenuItem();
-        jSeparator13 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem29 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem40 = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
         jMenuItem16 = new javax.swing.JMenuItem();
         jSeparator10 = new javax.swing.JPopupMenu.Separator();
@@ -218,7 +222,6 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenuItem15 = new javax.swing.JMenuItem();
         jSeparator16 = new javax.swing.JPopupMenu.Separator();
         jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
         jSeparator17 = new javax.swing.JPopupMenu.Separator();
         jMenuItem24 = new javax.swing.JMenuItem();
         jSeparator15 = new javax.swing.JPopupMenu.Separator();
@@ -241,8 +244,8 @@ public class MainWindowSample extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SecureBlue Encryption Software");
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(1300, 600));
-        setMinimumSize(new java.awt.Dimension(1300, 600));
+        setMaximumSize(new java.awt.Dimension(1300, 550));
+        setMinimumSize(new java.awt.Dimension(1300, 550));
         setName("MainWindowFrame"); // NOI18N
         setResizable(false);
 
@@ -250,11 +253,11 @@ public class MainWindowSample extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Add +");
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Buttons/page_white_add.png"))); // NOI18N
+        jButton7.setText("Add Files      ");
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton7.setFocusPainted(false);
-        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton7.setIconTextGap(40);
+        jButton7.setIconTextGap(6);
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -262,8 +265,10 @@ public class MainWindowSample extends javax.swing.JFrame {
         });
 
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Remove");
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Buttons/page_white_delete.png"))); // NOI18N
+        jButton6.setText("Remove Files");
         jButton6.setFocusPainted(false);
+        jButton6.setIconTextGap(6);
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -271,8 +276,10 @@ public class MainWindowSample extends javax.swing.JFrame {
         });
 
         jButton8.setBackground(new java.awt.Color(255, 255, 255));
-        jButton8.setText("Select All");
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Buttons/page_white_get.png"))); // NOI18N
+        jButton8.setText("Select All      ");
         jButton8.setFocusPainted(false);
+        jButton8.setIconTextGap(6);
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -280,8 +287,10 @@ public class MainWindowSample extends javax.swing.JFrame {
         });
 
         jButton9.setBackground(new java.awt.Color(255, 255, 255));
-        jButton9.setText("Encrypt");
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Buttons/key_add.png"))); // NOI18N
+        jButton9.setText("Encrypt Files ");
         jButton9.setFocusPainted(false);
+        jButton9.setIconTextGap(6);
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -289,12 +298,21 @@ public class MainWindowSample extends javax.swing.JFrame {
         });
 
         jButton10.setBackground(new java.awt.Color(255, 255, 255));
-        jButton10.setText("Decrypt");
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Buttons/key_delete.png"))); // NOI18N
+        jButton10.setText("Decrypt Files ");
         jButton10.setFocusPainted(false);
+        jButton10.setIconTextGap(6);
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jButton11.setBackground(new java.awt.Color(255, 255, 255));
-        jButton11.setText("Deselect All");
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Buttons/page_white_put.png"))); // NOI18N
+        jButton11.setText("Deselect All  ");
         jButton11.setFocusPainted(false);
+        jButton11.setIconTextGap(6);
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
@@ -305,35 +323,32 @@ public class MainWindowSample extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(6, 6, 6))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton10)
                 .addGap(6, 6, 6))
         );
 
@@ -436,23 +451,64 @@ public class MainWindowSample extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel6.setText("No Files:");
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Buttons/compress.png"))); // NOI18N
+        jButton1.setText("Compress Files");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Buttons/document_shred.png"))); // NOI18N
+        jButton3.setText("Shred Files     ");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Buttons/network_cloud.png"))); // NOI18N
+        jButton4.setText("Upload Files   ");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(6, 6, 6)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(6, 6, 6))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(6, 6, 6)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addGap(5, 5, 5)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGap(6, 6, 6))
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -541,9 +597,9 @@ public class MainWindowSample extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addGap(2, 2, 2)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2))
         );
@@ -625,6 +681,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Device/transmit.png"))); // NOI18N
         jMenu6.setText("External Device");
 
+        jMenuItem18.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Device/transmit.png"))); // NOI18N
         jMenuItem18.setText("No Device Connected");
         jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
@@ -646,11 +703,21 @@ public class MainWindowSample extends javax.swing.JFrame {
 
         jMenuItem21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Device/transmit_delete.png"))); // NOI18N
         jMenuItem21.setText("Disconnect Device");
+        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem21ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem21);
         jMenu6.add(jSeparator8);
 
         jMenuItem22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Device/transmit_edit.png"))); // NOI18N
         jMenuItem22.setText("Manage Devices");
+        jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem22ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem22);
 
         jMenuBar1.add(jMenu6);
@@ -658,6 +725,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Folder/folder.png"))); // NOI18N
         jMenu3.setText("Folder Management");
 
+        jMenuItem14.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_MASK));
         jMenuItem14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Folder/folder.png"))); // NOI18N
         jMenuItem14.setText("No Folder Selected");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
@@ -679,6 +747,11 @@ public class MainWindowSample extends javax.swing.JFrame {
 
         jMenuItem32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Folder/folder_delete.png"))); // NOI18N
         jMenuItem32.setText("Delete Folder");
+        jMenuItem32.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem32ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem32);
         jMenu3.add(jSeparator18);
 
@@ -692,87 +765,6 @@ public class MainWindowSample extends javax.swing.JFrame {
         jMenu3.add(jMenuItem31);
 
         jMenuBar1.add(jMenu3);
-
-        jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Workstation/computer.png"))); // NOI18N
-        jMenu9.setText("Workstation");
-
-        jMenuItem35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Workstation/computer.png"))); // NOI18N
-        jMenuItem35.setText("No Workstation Selected");
-        jMenu9.add(jMenuItem35);
-        jMenu9.add(jSeparator22);
-
-        jMenuItem37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Workstation/computer_add.png"))); // NOI18N
-        jMenuItem37.setText("Add Workstation");
-        jMenu9.add(jMenuItem37);
-
-        jMenuItem36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Workstation/computer_delete.png"))); // NOI18N
-        jMenuItem36.setText("Delete Workstation");
-        jMenuItem36.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem36ActionPerformed(evt);
-            }
-        });
-        jMenu9.add(jMenuItem36);
-        jMenu9.add(jSeparator20);
-
-        jMenuItem34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Workstation/computer_edit.png"))); // NOI18N
-        jMenuItem34.setText("Manage Workstations");
-        jMenu9.add(jMenuItem34);
-
-        jMenuBar1.add(jMenu9);
-
-        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Extra/flag_airfield_vehicle_safety.png"))); // NOI18N
-        jMenu8.setText("Extras");
-
-        jMenuItem30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Extra/compress.png"))); // NOI18N
-        jMenuItem30.setText("File Compression");
-        jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem30ActionPerformed(evt);
-            }
-        });
-        jMenu8.add(jMenuItem30);
-        jMenu8.add(jSeparator14);
-
-        jMenuItem28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Extra/document_shred.png"))); // NOI18N
-        jMenuItem28.setText("Shredding");
-        jMenuItem28.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem28ActionPerformed(evt);
-            }
-        });
-        jMenu8.add(jMenuItem28);
-
-        jMenuItem26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Extra/bomb.png"))); // NOI18N
-        jMenuItem26.setText("Self Destruct");
-        jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem26ActionPerformed(evt);
-            }
-        });
-        jMenu8.add(jMenuItem26);
-        jMenu8.add(jSeparator11);
-
-        jMenuItem27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Extra/system_monitor.png"))); // NOI18N
-        jMenuItem27.setText("Hacking Monitoring");
-        jMenuItem27.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem27ActionPerformed(evt);
-            }
-        });
-        jMenu8.add(jMenuItem27);
-        jMenu8.add(jSeparator13);
-
-        jMenuItem29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Extra/network_cloud.png"))); // NOI18N
-        jMenuItem29.setText("Cloud Storage");
-        jMenuItem29.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem29ActionPerformed(evt);
-            }
-        });
-        jMenu8.add(jMenuItem29);
-
-        jMenuBar1.add(jMenu8);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Setting/setting_tools.png"))); // NOI18N
         jMenu4.setText("Settings");
@@ -813,15 +805,6 @@ public class MainWindowSample extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem13);
-
-        jMenuItem40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Setting/computer.png"))); // NOI18N
-        jMenuItem40.setText("Workstation");
-        jMenuItem40.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem40ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem40);
         jMenu4.add(jSeparator5);
 
         jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Setting/lock.png"))); // NOI18N
@@ -855,15 +838,6 @@ public class MainWindowSample extends javax.swing.JFrame {
             }
         });
         jMenu7.add(jMenuItem12);
-
-        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Setting/bomb.png"))); // NOI18N
-        jMenuItem11.setText("Self Destruct");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
-            }
-        });
-        jMenu7.add(jMenuItem11);
         jMenu7.add(jSeparator17);
 
         jMenuItem24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/SecureBlue/graphic_Setting/system_monitor.png"))); // NOI18N
@@ -994,7 +968,7 @@ public class MainWindowSample extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Saple, javax.swing.GroupLayout.DEFAULT_SIZE, 1069, Short.MAX_VALUE)
+                    .addComponent(Saple)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 1300, Short.MAX_VALUE)
@@ -1011,7 +985,7 @@ public class MainWindowSample extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Saple, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)))
+                        .addComponent(Saple, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)))
                 .addGap(3, 3, 3)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -1033,6 +1007,7 @@ public class MainWindowSample extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         AddWindow aw = new AddWindow(this, true);
+        aw.setVisible(true);
 
         addFiles = aw.getArrayFiles();
 
@@ -1147,26 +1122,24 @@ public class MainWindowSample extends javax.swing.JFrame {
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
+        currentDEV vcd = new currentDEV(this, true);
+        vcd.setVisible(true);
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
+        BluetoothDeviceSample ad = new BluetoothDeviceSample(this,true);
+        ad.setVisible(true);
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         // TODO add your handling code here:
         Settings sw = new Settings(this, true);
-        sw.getjTabbedPane1().setSelectedIndex(6);
+        sw.getjTabbedPane1().setSelectedIndex(5);
 
         sw.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem15ActionPerformed
-
-    private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
-        // TODO add your handling code here:
-        COMPRESS fcw = new COMPRESS(this, true);
-        fcw.setVisible(true);
-    }//GEN-LAST:event_jMenuItem30ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
@@ -1274,18 +1247,20 @@ public class MainWindowSample extends javax.swing.JFrame {
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
+        viewCurrentlyFolder vcf = new viewCurrentlyFolder(this, true);
+        vcf.setVisible(true);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem33ActionPerformed
         // TODO add your handling code here:
+        addFolder af = new addFolder(this, true);
+        af.setVisible(true);
     }//GEN-LAST:event_jMenuItem33ActionPerformed
-
-    private void jMenuItem36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem36ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem36ActionPerformed
 
     private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
         // TODO add your handling code here:
+        ManageFolder mf = new ManageFolder(this, true);
+        mf.setVisible(true);
     }//GEN-LAST:event_jMenuItem31ActionPerformed
 
     private void jMenuItem39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem39ActionPerformed
@@ -1295,19 +1270,10 @@ public class MainWindowSample extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem39ActionPerformed
 
-    private void jMenuItem40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem40ActionPerformed
-        // TODO add your handling code here:
-        Settings sw = new Settings(this, true);
-        sw.getjTabbedPane1().setSelectedIndex(4);
-
-        sw.setVisible(true);
-
-    }//GEN-LAST:event_jMenuItem40ActionPerformed
-
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         // TODO add your handling code here:
         Settings sw = new Settings(this, true);
-        sw.getjTabbedPane1().setSelectedIndex(5);
+        sw.getjTabbedPane1().setSelectedIndex(4);
 
         sw.setVisible(true);
 
@@ -1316,26 +1282,17 @@ public class MainWindowSample extends javax.swing.JFrame {
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         // TODO add your handling code here:
         Settings sw = new Settings(this, true);
-        sw.getjTabbedPane1().setSelectedIndex(7);
+        sw.getjTabbedPane1().setSelectedIndex(6);
 
         sw.setVisible(true);
 
 
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        // TODO add your handling code here:
-        Settings sw = new Settings(this, true);
-        sw.getjTabbedPane1().setSelectedIndex(8);
-
-        sw.setVisible(true);
-
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
-
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
         // TODO add your handling code here:
         Settings sw = new Settings(this, true);
-        sw.getjTabbedPane1().setSelectedIndex(9);
+        sw.getjTabbedPane1().setSelectedIndex(8);
 
         sw.setVisible(true);
 
@@ -1344,36 +1301,121 @@ public class MainWindowSample extends javax.swing.JFrame {
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
         // TODO add your handling code here:
         Settings sw = new Settings(this, true);
-        sw.getjTabbedPane1().setSelectedIndex(10);
+        sw.getjTabbedPane1().setSelectedIndex(9);
 
         sw.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
-    private void jMenuItem27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem27ActionPerformed
+    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
         // TODO add your handling code here:
+          Object[] options = {"Yes",
+            "Cancel"};
+        int n = JOptionPane.showOptionDialog(this,
+                "Are You Sure You Want To Disconnect This Device ",
+                "Disconnect Device",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                options,
+                options[1]);
+        
+        if (n == 0){
+            
+            // delete folder
+        }
+    }//GEN-LAST:event_jMenuItem21ActionPerformed
 
-        HACK hmw = new HACK(this, true);
-        hmw.setVisible(true);
-    }//GEN-LAST:event_jMenuItem27ActionPerformed
-
-    private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
         // TODO add your handling code here:
-        CLOUD cw = new CLOUD(this, true);
-        cw.setVisible(true);
-    }//GEN-LAST:event_jMenuItem29ActionPerformed
+        manageDEV md = new manageDEV(this, true);
+        md.setVisible(true);
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
 
-    private void jMenuItem28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem28ActionPerformed
-        // TODO add your handling code here:
-        SHREDD fsw = new SHREDD(this, true);
-        fsw.setVisible(true);
-    }//GEN-LAST:event_jMenuItem28ActionPerformed
+    private void jMenuItem32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem32ActionPerformed
+        // TODO add your handling code here
+        Object[] options = {"Yes",
+            "Cancel"};
+        int n = JOptionPane.showOptionDialog(this,
+                "Are You Sure You Want To Delete This Folder ",
+                "Delete Folder",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                options,
+                options[1]);
+        
+        if (n == 0){
+            
+            // delete folder
+        }
+    }//GEN-LAST:event_jMenuItem32ActionPerformed
 
-    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        SELF dsw = new SELF(this, true);
-        dsw.setVisible(true);
-    }//GEN-LAST:event_jMenuItem26ActionPerformed
+        COMPRESS fcw = new COMPRESS (this, true);
+        fcw.setMainGUI(this);
+        fcw.setVisible(true);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+          // TODO add your handling code here
+        Object[] options = {"Yes",
+            "Cancel"};
+        int n = JOptionPane.showOptionDialog(this,
+                "Are You Sure You Want To Decrypt Selected Files",
+                "Decrypt Files",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                options,
+                options[1]);
+        
+        if (n == 0){
+            
+            // shred folder
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+          Object[] options = {"Yes",
+            "Cancel"};
+        int n = JOptionPane.showOptionDialog(this,
+                "Are You Sure You Want To Shred Selected Files",
+                "Shred Files",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                options,
+                options[1]);
+        
+        if (n == 0){
+            
+            // shred folder
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+          Object[] options = {"Yes",
+            "Cancel"};
+        int n = JOptionPane.showOptionDialog(this,
+                "Are You Sure You Want To Upload Selected Files",
+                "Upload Files",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.PLAIN_MESSAGE,
+                null,
+                options,
+                options[1]);
+        
+        if (n == 0){
+            
+            // upload files
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void searchAll() {
 
@@ -1495,9 +1537,12 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JPopupMenu popup;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane Saple;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
@@ -1508,7 +1553,6 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -1516,12 +1560,9 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
@@ -1536,23 +1577,13 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem23;
     private javax.swing.JMenuItem jMenuItem24;
-    private javax.swing.JMenuItem jMenuItem26;
-    private javax.swing.JMenuItem jMenuItem27;
-    private javax.swing.JMenuItem jMenuItem28;
-    private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem30;
     private javax.swing.JMenuItem jMenuItem31;
     private javax.swing.JMenuItem jMenuItem32;
     private javax.swing.JMenuItem jMenuItem33;
-    private javax.swing.JMenuItem jMenuItem34;
-    private javax.swing.JMenuItem jMenuItem35;
-    private javax.swing.JMenuItem jMenuItem36;
-    private javax.swing.JMenuItem jMenuItem37;
     private javax.swing.JMenuItem jMenuItem38;
     private javax.swing.JMenuItem jMenuItem39;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem40;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
@@ -1562,20 +1593,16 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator10;
-    private javax.swing.JPopupMenu.Separator jSeparator11;
-    private javax.swing.JPopupMenu.Separator jSeparator13;
-    private javax.swing.JPopupMenu.Separator jSeparator14;
     private javax.swing.JPopupMenu.Separator jSeparator15;
     private javax.swing.JPopupMenu.Separator jSeparator16;
     private javax.swing.JPopupMenu.Separator jSeparator17;
     private javax.swing.JPopupMenu.Separator jSeparator18;
     private javax.swing.JPopupMenu.Separator jSeparator19;
     private javax.swing.JPopupMenu.Separator jSeparator2;
-    private javax.swing.JPopupMenu.Separator jSeparator20;
     private javax.swing.JPopupMenu.Separator jSeparator21;
-    private javax.swing.JPopupMenu.Separator jSeparator22;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
@@ -1584,6 +1611,7 @@ public class MainWindowSample extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator8;
     private javax.swing.JPopupMenu.Separator jSeparator9;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
@@ -1626,7 +1654,7 @@ public class MainWindowSample extends javax.swing.JFrame {
             String toolTip = null;
 
             switch (fileType.toLowerCase()) {
-                
+
                 case "not supported":
                     toolTip = "Encryption Not Supported";
                     break;
@@ -1638,7 +1666,7 @@ public class MainWindowSample extends javax.swing.JFrame {
                     break;
 
                 default:
-                     toolTip = fileType;
+                    toolTip = fileType;
                     break;
             }
             return toolTip;
@@ -2120,8 +2148,6 @@ public class MainWindowSample extends javax.swing.JFrame {
                 } else if (button.getText().equalsIgnoreCase("Open")) {
 
                     try {
-                        // error handling
-
                         if (Desktop.isDesktopSupported()) {
                             Desktop.getDesktop().open(filelists.get(jTable1.getSelectedRow()));
                         }

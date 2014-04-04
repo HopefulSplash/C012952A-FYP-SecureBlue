@@ -64,7 +64,7 @@ public class ContactWindow extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("SecureBlue Contact Us");
+        setTitle("Contact Us");
         setMinimumSize(new java.awt.Dimension(467, 269));
         setResizable(false);
 

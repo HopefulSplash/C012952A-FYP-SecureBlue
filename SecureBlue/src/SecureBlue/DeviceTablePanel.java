@@ -1,6 +1,5 @@
 package SecureBlue;
 
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Image;
@@ -15,7 +14,6 @@ import javax.swing.table.DefaultTableCellRenderer;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author TheThoetha
@@ -39,7 +37,6 @@ public class DeviceTablePanel extends java.awt.Panel {
 
         deviceTableScrollPane = new javax.swing.JScrollPane();
         deviceTable = new javax.swing.JTable();
-        jSpinner1 = new javax.swing.JSpinner();
 
         setMaximumSize(new java.awt.Dimension(445, 406));
         setMinimumSize(new java.awt.Dimension(445, 406));
@@ -51,8 +48,7 @@ public class DeviceTablePanel extends java.awt.Panel {
 
         deviceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null}
+
             },
             new String [] {
                 "Discovered Device Details"
@@ -78,19 +74,11 @@ public class DeviceTablePanel extends java.awt.Panel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(deviceTableScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(deviceTableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(deviceTableScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -98,49 +86,50 @@ public class DeviceTablePanel extends java.awt.Panel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JTable deviceTable;
     private javax.swing.JScrollPane deviceTableScrollPane;
-    private javax.swing.JSpinner jSpinner1;
     // End of variables declaration//GEN-END:variables
 }
 
-  class ImageRenderer extends DefaultTableCellRenderer {
+class ImageRenderer extends DefaultTableCellRenderer {
 
-        //validation 
-        ImageIcon icon = new ImageIcon(getClass().getResource("ICON.png"));
-        Image img = icon.getImage();
-        Image newimg = img.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
-        ImageIcon newIcon = new ImageIcon(newimg);
+    //validation 
+    ImageIcon icon = new ImageIcon(getClass().getResource("/SecureBlue/graphic_Device/transmit.png"));
+    Image img = icon.getImage();
+    Image newimg = img.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH);
+    ImageIcon newIcon = new ImageIcon(newimg);
 
-        public ImageRenderer() {
-            setOpaque(true);
+    public ImageRenderer() {
+        setOpaque(true);
+    }
+
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+            boolean hasFocus, int row, int column) {
+
+        if (isSelected) {
+            setForeground(table.getSelectionForeground());
+            setBackground(table.getSelectionBackground());
+        } else {
+            setForeground(table.getForeground());
+            setBackground(UIManager.getColor(Color.WHITE));
         }
 
-        @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
-                boolean hasFocus, int row, int column) {
+        if (table.getRowCount() > 0) {
+            if (table.getValueAt(row, column).toString().contains(" Device(s) Found")) {
+                setText((String) table.getValueAt(row, column));
+                setIcon(null);
 
-            if (isSelected) {
-                setForeground(table.getSelectionForeground());
-                setBackground(table.getSelectionBackground());
+                setHorizontalTextPosition(SwingConstants.CENTER);
+                setVerticalTextPosition(SwingConstants.CENTER);
             } else {
-                setForeground(table.getForeground());
-                setBackground(UIManager.getColor(Color.WHITE));
-            }
-
-            //if (table.getValueAt(row, column).toString().contains(" Device(s) Found")) {
-              //  setText((String) table.getValueAt(row, column));
-                //setIcon(null);
-
-                //setHorizontalTextPosition(SwingConstants.CENTER);
-                //setVerticalTextPosition(SwingConstants.CENTER);
-            //} else {
                 setText((String) table.getValueAt(row, column));
                 setIcon(newIcon);
                 setHorizontalTextPosition(SwingConstants.RIGHT);
                 setVerticalTextPosition(SwingConstants.CENTER);
                 setHorizontalAlignment(SwingConstants.LEFT);
                 setVerticalAlignment(SwingConstants.CENTER);
-           // }
-            return this;
+            }
         }
-
+        return this;
     }
+
+}

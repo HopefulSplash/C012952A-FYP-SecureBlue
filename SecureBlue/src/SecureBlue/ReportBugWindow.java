@@ -65,7 +65,7 @@ public class ReportBugWindow extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("SecureBlue Report Bug");
+        setTitle("Report Bug");
         setMinimumSize(new java.awt.Dimension(586, 418));
         setResizable(false);
 

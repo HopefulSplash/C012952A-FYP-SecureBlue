@@ -1,6 +1,10 @@
 package SecureBlue;
 
 import java.awt.Color;
+import java.io.File;
+import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,6 +18,21 @@ import java.awt.Color;
  */
 public class COMPRESS extends javax.swing.JDialog {
 
+     ArrayList<File> filelists = new ArrayList<>();
+     MainWindowSample mainGUI
+;
+     public MainWindowSample getMainGUI() {
+        return mainGUI;
+    }
+
+    public void setMainGUI(MainWindowSample mainGUI) {
+        this.mainGUI = mainGUI;
+    }
+    
+    private File file;
+
+
+
     /**
      * Creates new form COMPRESS
      */
@@ -23,6 +42,29 @@ public class COMPRESS extends javax.swing.JDialog {
         this.setLocationRelativeTo(this.getParent());
         jTable5.setBackground(Color.WHITE);
         jTable5.setFillsViewportHeight(true);
+        
+        filelists = mainGUI.getFilelists();
+                
+            System.out.println(filelists.size());
+        
+         DefaultTableModel dw = (DefaultTableModel) jTable5.getModel();
+
+        for (int i = 0; i < filelists.size(); i++) {
+            file = filelists.get(i);
+            
+            String fname = file.getName();
+            String name;
+            int pos;
+             pos = fname.lastIndexOf('.');
+            if (pos > 0) {
+                name = fname.substring(0, pos);
+
+            } else {
+                name = file.getName();
+            }
+
+            dw.addRow(new Object[]{false, name});
+        }
     }
 
     /**
@@ -49,24 +91,40 @@ public class COMPRESS extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("SecureBlue | File Compression");
+        setTitle("File Compression");
         setModal(true);
+        setResizable(false);
 
         jPanel47.setBackground(new java.awt.Color(255, 255, 255));
         jPanel47.setBorder(javax.swing.BorderFactory.createTitledBorder("Account Compressed Files"));
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Select", "Name"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Boolean.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable5.setRowHeight(23);
         jScrollPane5.setViewportView(jTable5);
+        jTable5.getColumnModel().getColumn(0).setMinWidth(40);
+        jTable5.getColumnModel().getColumn(0).setMaxWidth(40);
 
         jButton15.setText("Compress Selected");
 
